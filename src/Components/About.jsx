@@ -1,10 +1,10 @@
-import { Alert, Col, Container, Row,Image } from "react-bootstrap";
+import { Col, Container, Row,Image } from "react-bootstrap";
 import pic2 from "./Image/pic2.png";
 
 export function About() {
     return (
         <Container className="mt-5">
-            <h1><u>About Us</u></h1>
+           
             <Row><Image src=""/></Row> 
             <Row>
             <Col className="lg-4">
