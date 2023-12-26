@@ -1,15 +1,16 @@
 import {Navbar ,Container ,Nav ,Button} from 'react-bootstrap';
 import {LinkContainer} from "react-router-bootstrap";
 import './AllCss.css';
+import Logo from './Image/Medicarehub.jpeg';
 export function NavigationBar(){
     
     return(
-        <Navbar expand="lg" className=" Navbar bg-body-tertiary sticky-top" bg="dark" style={{height:'80px', fontSize:'20px'}}>
+        <Navbar expand="lg" className=" Navbar bg-body-tertiary sticky-top" bg="dark" style={{height:'80px', fontSize:'20px',color:'white'}}>
 
         {/* used sticky-top to fix nav bar */}
   
         <Container fluid>
-          <Navbar.Brand href="#">Medi Care Hub</Navbar.Brand>
+          <Navbar.Brand href="#"><img src={Logo} alt="Logo" style={{ height: "80px", width:'180px' }} /></Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -18,19 +19,19 @@ export function NavigationBar(){
               navbarScroll
             >
               <LinkContainer to="/">
-              <Nav.Link >Home</Nav.Link>
+              <Nav.Link ><b>Home</b></Nav.Link>
               </LinkContainer>
               <LinkContainer to="/Hospitals">
-              <Nav.Link >Hospitals</Nav.Link>
+              <Nav.Link ><b>Hospitals</b></Nav.Link>
               </LinkContainer>
               <LinkContainer to="/medicine">
-              <Nav.Link >Medicines</Nav.Link>
+              <Nav.Link ><b>Medicines</b></Nav.Link>
               </LinkContainer>
               <LinkContainer to="/about">
-              <Nav.Link >About</Nav.Link>
+              <Nav.Link ><b>About</b></Nav.Link>
               </LinkContainer>
               <LinkContainer to="/contact">
-              <Nav.Link >Contact</Nav.Link>
+              <Nav.Link ><b>Contact</b></Nav.Link>
               </LinkContainer>
               
             
@@ -52,7 +53,7 @@ export function NavigationBar(){
             </LinkContainer> */}
   
             <LinkContainer to="/login">
-            <Button variant="primary" className="me-2" style={{width :'100px'}}>Login</Button>
+            <Button  className="loginbutton me-2">Login</Button>
             </LinkContainer>
             
   
@@ -60,8 +61,8 @@ export function NavigationBar(){
             <Button variant="primary" className="me-2" >Sign In</Button>
             </LinkContainer> */}
             
-            <LinkContainer to="/registration">
-            <Button variant="primary" className="me-3">Register</Button>
+            <LinkContainer to="/signup">
+            <Button variant="dark" className="me-3">Sign Up</Button>
             </LinkContainer>
           </Navbar.Collapse>
         </Container>
