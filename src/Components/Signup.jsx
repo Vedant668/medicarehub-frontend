@@ -1,8 +1,5 @@
-//import { useContext, useState } from "react";
+// import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-//import { signUp } from "../utils/authAction";
-//import { ApplicationContext } from "../context/context";
-//import { toast } from "react-toastify";
 import "./AllCss.css";
 import {
   MDBBtn,
@@ -17,10 +14,12 @@ from 'mdb-react-ui-kit';
 
 function Signup() {
   // const [userData, setUserData] = useState({
-  //   first_name: "",
-  //   last_name: "",
+  //   name: "",
   //   email: "",
   //   pnone_number: "",
+  //   city: "",
+  //   age: "",
+  //   gender: "",
   //   type : "",
   //   password: "",
   // });
@@ -55,8 +54,7 @@ function Signup() {
   //     if (response.status) {
   //       console.log('came here11',currentUser)
   //       setCurrentUser({
-  //         first_name: response?.data?.first_name,
-  //         last_name: response?.data?.last_name,
+  //         name: response?.data?.first_name,
   //         phone_number: response?.data?.phone_number,
   //         type: response?.data?.type,
   //         email: response?.data?.email,
@@ -66,7 +64,6 @@ function Signup() {
   //       });
 
   //       localStorage.setItem("first_name", response?.data?.first_name);
-  //       localStorage.setItem("last_name", response?.data?.last_name);
   //       localStorage.setItem("phone_number", response?.data?.phone_number);
   //       localStorage.setItem("type", response?.data?.type);
   //       localStorage.setItem("email", response?.data?.email);
@@ -75,18 +72,9 @@ function Signup() {
   //       localStorage.setItem("isLoggedIn", true);
 
 
-  //       toast.success("User registration successful");
-  //       navigate("/Home");
-  //     } else {
-  //       toast.error(
-  //         "Something went wrong while registering the user.Please try again later."
-  //       );
-  //     }
-
   //     console.log('came hhere 44')
   //   } catch (err) {
   //     console.log("error", err);
-  //     toast.error(err?.response?.data?.message || "Something went wrong");
   //     return;
   //   }
   // };
@@ -132,28 +120,28 @@ function Signup() {
     <div id="radius-shape-1" className="position-absolute rounded-circle shadow-5-strong"></div>
     <div id="radius-shape-2" className="position-absolute shadow-5-strong"></div>
 
-    <MDBCard className='my-5' style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', backdropFilter: 'saturate(200%) blur(25px)' }}>
+    <MDBCard className='my-5' style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'saturate(200%) blur(25px)' }}>
       <MDBCardBody className='p-5'>
 
         <MDBRow>
           <MDBCol col='12'>
-            <MDBInput wrapperClass='mb-4' label='Name' id='Name' type='text'/>
+            <MDBInput wrapperClass='mb-4 text-white' label='Name' id='Name' type='text'/>
           </MDBCol>
         </MDBRow>
 
-        <MDBInput wrapperClass='mb-4' label='Email' id='email' type='email' />
+        <MDBInput wrapperClass='mb-4 text-white' label='Email' id='email' type='email' />
         
         <MDBRow>
         <MDBCol col='6'>
-        <MDBInput wrapperClass='mb-4' label='Phone Number' id='phone_number' type='number'/>
+        <MDBInput wrapperClass='mb-4 text-white' label='Phone Number' id='phone_number' type='number'/>
         </MDBCol>
         <MDBCol col='6'>
-        <MDBInput wrapperClass='mb-4' label='City' id='city' type='text'/>
+        <MDBInput wrapperClass='mb-4 text-white' label='City' id='city' type='text'/>
         </MDBCol>
         </MDBRow>
         <MDBRow>
           <MDBCol col='6'>
-          <MDBInput wrapperClass='mb-4' label='Age' id='age' type='number'/>
+          <MDBInput wrapperClass='mb-4 text-white' label='Age' id='age' type='number'/>
           </MDBCol>
 
           <MDBCol col='6'>
@@ -164,33 +152,35 @@ function Signup() {
                 <option value='female'>Female</option>
                 <option value='other'>Other</option>
               </select>
-            <label className='form-label'>Gender</label>
+            <label className='form-label text-white'>Gender</label>
           </div>
           </MDBCol>
         </MDBRow>
 
-        <MDBInput wrapperClass='mb-4' label='Create Your Password' id='password' type='password'/>
+        <MDBInput wrapperClass='mb-4 text-white' label='Create Your Password' id='password' type='password'/>
         
 
         <div className='mb-4'>
-                <label className='form-label'>Register as : </label>
-                <div className='form-check form-check-inline'>
+                <label className='form-label text-white'>Register as : </label>
+                <div className='form-check form-check-inline text-white'>
                   <input
-                    className='form-check-input'
+                    className='form-check-input text-white text-white'
                     type='radio'
                     id='userRadio'
                     value='user'
+                    name="userType"
                   />
                   <label className='form-check-label' htmlFor='userRadio'>Patient</label>
                 </div>
-                <div className='form-check form-check-inline'>
+                <div className='form-check form-check-inline text-white'>
                   <input
-                    className='form-check-input'
+                    className='form-check-input text-white'
                     type='radio'
                     id='doctorRadio'
                     value='doctor'
+                    name="userType"
                   />
-                  <label color='success'className='form-check-label' htmlFor='doctorRadio'>Doctor</label>
+                  <label color='success'className='form-check-label text-white' htmlFor='doctorRadio'>Doctor</label>
                 </div>
               </div>
 
