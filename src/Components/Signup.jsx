@@ -1,4 +1,4 @@
-// import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./AllCss.css";
 import {
@@ -13,42 +13,45 @@ import {
 from 'mdb-react-ui-kit';
 
 function Signup() {
-  // const [userData, setUserData] = useState({
-  //   name: "",
-  //   email: "",
-  //   pnone_number: "",
-  //   city: "",
-  //   age: "",
-  //   gender: "",
-  //   type : "",
-  //   password: "",
-  // });
-  // const navigate = useNavigate();
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    phone_number: "",
+    city: "",
+    age: "",
+    gender: "",
+    type : "",
+    password: "",
+  });
 
-  // const [error, setError] = useState("");
+  const [error, setError] = useState("");
 
   // const { currentUser, setCurrentUser } = useContext(ApplicationContext);
   // console.log("current user", currentUser);
 
-  // const handleOnSignUp = async () => {
-  //   try {
-  //     setError("");
-  //     const { name, email, password } = userData;
-  //     if (!name) {
-  //       setError("Enter a valid name");
-  //       return;
-  //     }
-  //     if (!email || !/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)) {
-  //       setError("Enter a valid email");
-  //       return;
-  //     }
-  //     if (
-  //       !password ||
-  //       !/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(password)
-  //     ) {
-  //       setError("Enter a valid password");
-  //       return;
-  //     }
+  const handleOnSignUp = async () => {
+    try {
+      setError("");
+      const { name, email, phone_number, city, age, gender, type, password } = userData;
+      if (!name) {
+        setError("Enter a valid name");
+        return;
+      }
+      if (!email || !/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)) {
+        setError("Enter a valid email");
+        return;
+      }
+      if (
+        !password ||
+        !/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(password)
+      ) {
+        setError("Enter a valid password");
+        return;
+      }
+      if (age < 0 || age > 100) {
+        setError("Enter a valid age between 0 and 100");
+        return;
+      }
 
   //     let response = await signUp(userData);
   //     if (response.status) {
@@ -73,17 +76,15 @@ function Signup() {
 
 
   //     console.log('came hhere 44')
-  //   } catch (err) {
-  //     console.log("error", err);
-  //     return;
-  //   }
-  // };
+    } catch (err) {
+      console.log("error", err);
+      return;
+    }
+  };
 
-  // console.log('current User0',currentUser)
-
-  // const handleUserInfoChange = (e) => {
-  //   setUserData({ ...userData, [e.target.name]: e.target.value });
-  // };
+  const handleUserInfoChange = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
 
   // const onKeyDown = (e) => {
   //   const code = e.keyCode ? e.keyCode : e.which;
@@ -125,28 +126,28 @@ function Signup() {
 
         <MDBRow>
           <MDBCol col='12'>
-            <MDBInput wrapperClass='mb-4 text-white' label='Name' id='Name' type='text'/>
+            <MDBInput wrapperClass='mb-4 text-white' label='Name' id='Name' type='text' onChange={handleUserInfoChange}/>
           </MDBCol>
         </MDBRow>
 
-        <MDBInput wrapperClass='mb-4 text-white' label='Email' id='email' type='email' />
+        <MDBInput wrapperClass='mb-4 text-white' label='Email' id='email' type='email' onChange={handleUserInfoChange} />
         
         <MDBRow>
         <MDBCol col='6'>
-        <MDBInput wrapperClass='mb-4 text-white' label='Phone Number' id='phone_number' type='number'/>
+        <MDBInput wrapperClass='mb-4 text-white' label='Phone Number' id='phone_number' type='number' onChange={handleUserInfoChange}/>
         </MDBCol>
         <MDBCol col='6'>
-        <MDBInput wrapperClass='mb-4 text-white' label='City' id='city' type='text'/>
+        <MDBInput wrapperClass='mb-4 text-white' label='City' id='city' type='text' onChange={handleUserInfoChange}/>
         </MDBCol>
         </MDBRow>
         <MDBRow>
           <MDBCol col='6'>
-          <MDBInput wrapperClass='mb-4 text-white' label='Age' id='age' type='number'/>
+          <MDBInput wrapperClass='mb-4 text-white' label='Age' id='age' type='number' onChange={handleUserInfoChange}/>
           </MDBCol>
 
           <MDBCol col='6'>
           <div className='mb-4'>
-              <select className='form-select'  id='gender' >
+              <select className='form-select'  id='gender' onChange={handleUserInfoChange} >
                 <option value='' disabled selected>Select Gender</option>
                 <option value='male'>Male</option>
                 <option value='female'>Female</option>
@@ -169,6 +170,7 @@ function Signup() {
                     id='userRadio'
                     value='user'
                     name="userType"
+                    onChange={handleUserInfoChange}
                   />
                   <label className='form-check-label' htmlFor='userRadio'>Patient</label>
                 </div>
@@ -179,12 +181,13 @@ function Signup() {
                     id='doctorRadio'
                     value='doctor'
                     name="userType"
+                    onChange={handleUserInfoChange}
                   />
                   <label color='success'className='form-check-label text-white' htmlFor='doctorRadio'>Doctor</label>
                 </div>
               </div>
 
-        <MDBBtn color='success' className='w-100 mb-4' size='md' type="submit" >sign up</MDBBtn>
+        <MDBBtn color='success' className='w-100 mb-4' size='md' onClick={handleOnSignUp} >sign up</MDBBtn>
 
         <div className="text-center">
 
