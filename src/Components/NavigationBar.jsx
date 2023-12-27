@@ -21,7 +21,7 @@ export function NavigationBar(){
               <LinkContainer to="/">
               <Nav.Link ><b>Home</b></Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/Hospitals">
+              <LinkContainer to="/hospital">
               <Nav.Link ><b>Hospitals</b></Nav.Link>
               </LinkContainer>
               <LinkContainer to="/medicine">

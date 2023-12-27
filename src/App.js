@@ -9,8 +9,9 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import { Footer } from './Components/Footer.jsx';
 import Signup from './Components/Signup.jsx';
 import Login from './Components/Login.jsx';
+import { Hospitals } from './Components/Hospitals.jsx';
 function App() {
-  return (
+  return ( 
   <BrowserRouter>
     <NavigationBar></NavigationBar>
     <Routes>
@@ -20,6 +21,7 @@ function App() {
       <Route path="/contact" element={<Contact/>}></Route>
       <Route path="/login" element={<Login/>}></Route>
       <Route path="/signup" element={<Signup/>}></Route>
+      <Route path="/hospital" element={<Hospitals/>}></Route>
       
         
     </Routes>
