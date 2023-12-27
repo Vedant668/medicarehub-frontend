@@ -137,16 +137,8 @@ function Signup() {
         <MDBInput wrapperClass='mb-4 text-white' label='Phone Number' id='phone_number' type='number' onChange={handleUserInfoChange}/>
         </MDBCol>
         <MDBCol col='6'>
-        <MDBInput wrapperClass='mb-4 text-white' label='City' id='city' type='text' onChange={handleUserInfoChange}/>
-        </MDBCol>
-        </MDBRow>
-        <MDBRow>
-          <MDBCol col='6'>
-          <MDBInput wrapperClass='mb-4 text-white' label='Age' id='age' type='number' onChange={handleUserInfoChange}/>
-          </MDBCol>
-
-          <MDBCol col='6'>
-          <div className='mb-4'>
+        
+        <div className='mb-4'>
               <select className='form-select'  id='gender' onChange={handleUserInfoChange} >
                 <option value='' disabled selected>Select Gender</option>
                 <option value='male'>Male</option>
@@ -155,6 +147,15 @@ function Signup() {
               </select>
             <label className='form-label text-white'>Gender</label>
           </div>
+        </MDBCol>
+        </MDBRow>
+        <MDBRow>
+          <MDBCol col='6'>
+          <MDBInput wrapperClass='mb-4 text-white' label='Address' id='age' type='textarea' onChange={handleUserInfoChange}/>
+          </MDBCol>
+
+          <MDBCol col='6'>
+          <MDBInput wrapperClass='mb-4 text-white' label='City' id='city' type='text' onChange={handleUserInfoChange}/>
           </MDBCol>
         </MDBRow>
 
