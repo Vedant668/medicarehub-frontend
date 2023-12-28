@@ -11,6 +11,9 @@ import Signup from './Components/Signup.jsx';
 import Login from './Components/Login.jsx';
 import { Hospitals } from './Components/Hospitals.jsx';
 import { Neuro } from './Components/Neuro.jsx';
+import { Cardio } from './Components/Cardio';
+import { Dentist } from './Components/Dentist';
+
 function App() {
   return ( 
   <BrowserRouter>
@@ -24,6 +27,9 @@ function App() {
       <Route path="/signup" element={<Signup/>}></Route>
       <Route path="/hospital" element={<Hospitals/>}></Route>
       <Route path="/neuro" element={<Neuro/>}></Route>
+      <Route path="/dentist" element={<Dentist/>}></Route>
+      <Route path="/cardio" element={<Cardio/>}></Route>
+      
       
         
     </Routes>
