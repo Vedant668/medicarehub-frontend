@@ -1,7 +1,9 @@
-import { Container } from "react-bootstrap";
+import { Container} from "react-bootstrap";
+import {LinkContainer} from "react-router-bootstrap";
 import "./AllCss.css"; 
 
 export function Clinispecial() {
+   
    return (
       <Container className="Clinispecial">
       <section className="section section-specialities">
@@ -20,26 +22,30 @@ export function Clinispecial() {
                         <p>General Physician</p>
                      </a>
 
-                     <a href="#" >
-                        <div className="speicality-img">
-                           <img src="https://www.quickobook.com/assets/img/specialities/specialities-02.png" className="img-fluid" alt="Neurology" />
-                    
-                        </div>
-                      <p>Neurology</p>
+                     <a>
+                     <div className="speicality-img">
+                     <LinkContainer to="/neuro"><img src="https://www.quickobook.com/assets/img/specialities/specialities-02.png" className="img-fluid" alt="Neurology" /></LinkContainer>
+                     
+                     </div>
+                     <p>Neurology</p>
                      </a>
+                     
+                    
 
-                     <a href="#">
+                     <a>
                         <div className="speicality-img">
-                           <img src="https://www.quickobook.com/assets/img/specialities/specialities-01.png" className="img-fluid" alt="Urology" />
-                           
+                        <LinkContainer to="/urolo">
+                          <img src="https://www.quickobook.com/assets/img/specialities/specialities-01.png" className="img-fluid" alt="Urology" />
+                         </LinkContainer>  
                         </div>
                         <p>Urology</p>
                      </a>
 
-                     <a href="#" >
+                     <a >
                         <div className="speicality-img">
+                         <LinkContainer to="/ortho">
                            <img src="https://www.quickobook.com/assets/img/specialities/specialities-03.png" className="img-fluid" alt="Orthopedic" />
-                         
+                           </LinkContainer>
                         </div>
                         <p>Orthopedic</p>
                      </a>
