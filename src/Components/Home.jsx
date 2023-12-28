@@ -6,13 +6,17 @@ import slider1 from './Image/slider1.png';
 import slider2 from './Image/slider2.png';
 import slider3 from './Image/slider3.png';
 import pic1 from './Image/pic1.png';
+import booking from './Image/bookappoint.png';
 
 import { Clinispecial } from "./Clinispecial";
+import { useNavigate } from "react-router-dom";
 export function Home(){
     const carouselItemStyle = {
         height: "600px", // Adjust the height as needed
         
       };
+
+      const navigate=useNavigate();
 
       const [open, setOpen] = useState(false)
 
@@ -57,6 +61,19 @@ export function Home(){
         
 
     <Clinispecial></Clinispecial>
+
+
+
+    <Row>
+    <Card style={{ width: '1200px' }}>
+      <Card.Img variant="top" src={booking} />
+      <Card.Body style={{paddingTop:'15px'}}>        
+        <Button variant="primary"  onClick={() => { navigate("/bookingForm")}}>Book Now</Button>
+      </Card.Body>
+    </Card>
+    </Row>
+
+
 
     <Row id="cards">
                     <Col>
