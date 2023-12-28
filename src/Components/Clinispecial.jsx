@@ -1,9 +1,10 @@
 import { Container} from "react-bootstrap";
 import {LinkContainer} from "react-router-bootstrap";
 import "./AllCss.css"; 
+import { useNavigate } from "react-router-dom";
 
 export function Clinispecial() {
-   
+   const navigate=useNavigate();
    return (
       <Container className="Clinispecial">
       <section className="section section-specialities">
@@ -30,8 +31,6 @@ export function Clinispecial() {
                      <p>Neurology</p>
                      </a>
                      
-                    
-
                      <a href="#">
                         <div className="speicality-img">
                            <img src="https://www.quickobook.com/assets/img/specialities/specialities-01.png" className="img-fluid" alt="Urology" />
@@ -48,20 +47,21 @@ export function Clinispecial() {
                         <p>Orthopedic</p>
                      </a>
 
-                     <a href="#" >
+                     <LinkContainer to="/cardio">
+                     <a>
                         <div className="speicality-img">
-                           <img src="https://www.quickobook.com/assets/img/specialities/specialities-04.png" className="img-fluid" alt="Cardiologist" />
-                           
+                     <img src="https://www.quickobook.com/assets/img/specialities/specialities-04.png" className="img-fluid" alt="Cardiologist" />
                         </div>
                         <p>Cardiologist</p>
-                     </a>
-                     <a href="#" >
-							<div class="speicality-img">
-								<img src="https://www.quickobook.com/assets/img/specialities/specialities-05.png" class="img-fluid" alt="Dentist"/>
-								
+                     </a></LinkContainer>
+
+                     <LinkContainer to="/dentist">
+                     <a >
+							<div className="speicality-img">
+							<img src="https://www.quickobook.com/assets/img/specialities/specialities-05.png" class="img-fluid" alt="Dentist"/> 
 							</div>	
 							<p>Dentist</p>
-						</a>
+						</a></LinkContainer>
 				
                   </div>
                </div>
