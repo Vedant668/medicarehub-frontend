@@ -1,4 +1,4 @@
-import { Container,Col, Card, Button, Row} from "react-bootstrap";
+import { Container} from "react-bootstrap";
 import Accordion from 'react-bootstrap/Accordion';
 import Filter from "./Filter";
 

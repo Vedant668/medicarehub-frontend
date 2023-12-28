@@ -6,7 +6,7 @@ import slider1 from './Image/slider1.png';
 import slider2 from './Image/slider2.png';
 import slider3 from './Image/slider3.png';
 import pic1 from './Image/pic1.png';
-import { Footer } from "./Footer";
+
 import { Clinispecial } from "./Clinispecial";
 export function Home(){
     const carouselItemStyle = {
@@ -55,6 +55,8 @@ export function Home(){
       </Carousel.Item>
     </Carousel>
         
+
+    <Clinispecial></Clinispecial>
 
     <Row id="cards">
                     <Col>
@@ -186,7 +188,7 @@ export function Home(){
 
 
 
-        <Clinispecial></Clinispecial>
+       
 
         <Row><Image src={pic1}></Image></Row>
        
