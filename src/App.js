@@ -7,10 +7,11 @@ import {About} from './Components/About.jsx';
 import {Contact} from './Components/Contact.jsx';
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import { Footer } from './Components/Footer.jsx';
-import Signup from './Components/Signup.jsx';
-import Login from './Components/Login.jsx';
+import {Signup} from './Components/Signup.jsx';
+import {Login} from './Components/Login.jsx';
 import { Hospitals } from './Components/Hospitals.jsx';
 import { Neuro } from './Components/Neuro.jsx';
+import { BookingForm } from './Components/BookingForm.jsx';
 function App() {
   return ( 
   <BrowserRouter>
@@ -24,6 +25,7 @@ function App() {
       <Route path="/signup" element={<Signup/>}></Route>
       <Route path="/hospital" element={<Hospitals/>}></Route>
       <Route path="/neuro" element={<Neuro/>}></Route>
+      <Route path="/bookingForm" element={<BookingForm/>}></Route>
       
         
     </Routes>
