@@ -135,3 +135,22 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#60EFFF", en
   }
 
 
+  .RegistrationForm {
+    background-image: url('./Image/signup.png');
+    background-repeat: no-repeat;
+}
+
+.Login {
+  background-image: url(./Image/loginback.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+ 
+}
+
+.BookingForm{
+  background-image: url(./Image/appbg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

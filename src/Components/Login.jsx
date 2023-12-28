@@ -1,128 +1,113 @@
-import { useContext, useState } from "react"
+import { Container, Col, Row, Form, Alert, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import React from 'react';
-import "./AllCss.css";
+import { useState } from 'react';
+import { userLogin } from "../Services/UserServices";
+import { doctorLogin } from "../Services/DoctorServices";
+import {Image} from "react-bootstrap";
+import login from "./Image/login.jpg";
+export function Login() {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState(
+    {
+      login: "", email: "", phone: "", password: ""
+    }
+  );
+  const [loginError, setLoginError] = useState(false);
 
 
-import {
-    MDBBtn,
-    MDBContainer,
-    MDBRow,
-    MDBCol,
-    MDBInput,
-    MDBCardBody,
-    MDBCard
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+
+    if (formData.login==='user') {
+      console.log("USER");
+      try {
+        const result = await userLogin(formData);
+        console.log(result);
+        localStorage.setItem("token", result.token);
+        navigate("/");
+      } catch (error) {
+        console.log(error);
+        setLoginError(true);
+
+        setTimeout(() => {
+          setLoginError(false);       //to vanish the message after 2 sec
+        }, 2000);
+      }
+    }
+    else {
+      console.log("DOCTOR");
+      try {
+        const result = await doctorLogin(formData);
+        console.log(result);
+        localStorage.setItem("token", result.token);
+        navigate("/doctor");
+      } catch (error) {
+        console.log(error);
+        setLoginError(true);
+      }
+    }
   }
-  from 'mdb-react-ui-kit';
+  return (
+    <Container fluid className="Login">
+
+      <Row style={{ padding: "" }}>
+        <Col lg={2}>
+        </Col>
+        <Col lg={3}>
+          <Alert style={{ background: 'transparent', textAlign: 'center', border: 'none' }}>
+            <h2><b>Login</b></h2>
+          </Alert>
+          <Form onSubmit={handleSubmit}>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label><b>Gender</b></Form.Label>
+              <Row>
+                <Col lg={3}><Form.Check type="radio" label="User" name="login" value="user" checked={formData.login === 'user'} onChange={handleChange} required /></Col>
+                <Col lg={3}><Form.Check type="radio" label="Doctor" name="login" value="doctor" checked={formData.login === 'doctor'} onChange={handleChange} required /></Col>
+              </Row>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label style={{ color: 'rgb(0,0,153)' }}><b>Email</b></Form.Label>
+              <Form.Control type="email" placeholder="Enter Email" name="email" value={formData.email} onChange={handleChange} required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label style={{ color: 'rgb(0,0,153)' }}><b>Phone Number</b></Form.Label>
+              <Form.Control type="text" placeholder="Enter Phone Number" name="phone" value={formData.phone} onChange={handleChange} required pattern="[0-9]{10}" />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label style={{ color: 'rgb(0,0,153)' }}><b>Password</b></Form.Label>
+              <Form.Control type="password" placeholder="Enter Password" name="password" value={formData.password} onChange={handleChange} required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" />
+              <Form.Text className="text-muted">
+                Password must contain Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:
+              </Form.Text>
+            </Form.Group>
 
 
+            <Button style={{ backgroundColor: "rgb(0,0,153)" }} type="submit">
+              Login
+            </Button>
 
-
-const Login= ()=> {
-    const navigate = useNavigate();
-    const [userData,setUserData] = useState({
-        email: "",
-        password: "",
-    });
-    // const {setCurrentUser} =  useContext(ApplicationContext);
-
-    const [error, setError] = useState("");
-
-    const handleUserInfoChange = (e) =>{
-        setUserData({...userData,[e.target.name]:e.target.value});
-    };
-
-    const handleOnLogin = async () => {
-        try {
-            setError("");
-            const {email,password}= userData;
-            if(!email || !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
-                setError("Enter a valid email");
-                return;
-            }
-
-            if(!password){
-                setError("Enter a valid password");
-                return;
-            }
-
-            // let response = await loginHandle(userData);
-            // if(response.status){
-            //     setCurrentUser({
-            //         first_name: response?.data?.first_name,
-            //         last_name: response?.data?.last_name,
-            //         phone_number: response?.data?.phone_number,
-            //         type: response?.data?.type,
-            //         email: response?.data?.email,
-            //         token: response?.data?.token,
-            //         _id: response?.data?._id,
-            //         isLoggedIn: true,
-            //       });
+          </Form>
+          {loginError ? <Alert style={{ backgroundColor: "rgb(0,204,102)" }}>Invalid Phone or Password</Alert> : null}
           
-            //       localStorage.setItem("first_name", response?.data?.first_name);
-            //       localStorage.setItem("last_name", response?.data?.last_name);
-            //       localStorage.setItem("phone_number", response?.data?.phone_number);
-            //       localStorage.setItem("type", response?.data?.type);
-            //       localStorage.setItem("email", response?.data?.email);
-            //       localStorage.setItem("_id", response?.data?._id);
-            //       localStorage.setItem("token", JSON.stringify(response?.data?.token));
-            //       localStorage.setItem("isLoggedIn", true);
-
-   
-            //     navigate("/home");
-            // }
-        }catch(err){
-            console.log(err);
-            setError(err?.response?.data?.message|| "something went wrong");
-        }
-    };
-
-    const onKeyDown = (e) => {
-        const code  = e.keyCode?e.keyCode:e.which;
-        if(code == 13){
-            e.preventDefault();
-            handleOnLogin();
-        }
-    };
-
-    return(
-        <>
-            <MDBContainer fluid className="loginBody">
-
-<MDBRow className='d-flex justify-content-center align-items-center h-100'>
-  <MDBCol col='12'>
-
-    <MDBCard className='bg-dark text-white my-5 mx-auto' style={{borderRadius: '1rem', maxWidth: '400px'}}>
-      <MDBCardBody className='p-5 d-flex flex-column align-items-center mx-auto w-100'>
-
-        <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
-        <p className="text-white-50 mb-5">Please login here</p>
-
-        <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Email address'  name="email" type='email' size="lg" onChange={handleUserInfoChange}/>
+        </Col>
+        <Col lg={1}>
+        </Col>
+        <Col lg={6}>
+        <Image  src={login}></Image>
+        </Col>
+      </Row>
 
 
-        <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Password' type='password' size="lg" name="password" id="password" onChange={handleUserInfoChange} />
-        
-
-        <div>
-        <MDBBtn className='fw-bold mx-2 px-5'  size='lg' style={{ visibility: 'visible' }} onClick={handleOnLogin} >
-                    Login
-        </MDBBtn>
-        </div>
-
-        <div>
-          <p className="mb-0">Don't have an account? <a href="/signup" class="text-white-50 fw-bold">Sign Up</a></p>
-
-        </div>
-      </MDBCardBody>
-    </MDBCard>
-
-  </MDBCol>
-</MDBRow>
-
-</MDBContainer>
-        </>
-    );
-};
-
-export default Login;
+    </Container>
+  );
+}
