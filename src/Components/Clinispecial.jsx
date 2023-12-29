@@ -15,9 +15,9 @@ export function Clinispecial() {
             <div className="row justify-content-center">
                <div className="col-md-10">
                   <div className="specialities d-flex justify-content-around">
-                     <a href="#">
+                     <a>
                         <div className="speicality-img" >
-                           <img src="https://www.quickobook.com/assets/img/specialities/general_physician.png" className="img-fluid" alt="General Physician" />       
+                        <LinkContainer to="/general"><img src="https://www.quickobook.com/assets/img/specialities/general_physician.png" className="img-fluid" alt="General Physician" /></LinkContainer>     
                         </div>
                         <p>General Physician</p>
                      </a>
@@ -32,32 +32,32 @@ export function Clinispecial() {
                      
                     
 
-                     <a href="#">
+                     <a>
                         <div className="speicality-img">
-                           <img src="https://www.quickobook.com/assets/img/specialities/specialities-01.png" className="img-fluid" alt="Urology" />
+                        <LinkContainer to="/urology"><img src="https://www.quickobook.com/assets/img/specialities/specialities-01.png" className="img-fluid" alt="Urology" /></LinkContainer>
                            
                         </div>
                         <p>Urology</p>
                      </a>
 
-                     <a href="#" >
+                     <a >
                         <div className="speicality-img">
-                           <img src="https://www.quickobook.com/assets/img/specialities/specialities-03.png" className="img-fluid" alt="Orthopedic" />
+                        <LinkContainer to="/ortho"><img src="https://www.quickobook.com/assets/img/specialities/specialities-03.png" className="img-fluid" alt="Orthopedic" /></LinkContainer>
                          
                         </div>
                         <p>Orthopedic</p>
                      </a>
 
-                     <a href="#" >
+                     <a >
                         <div className="speicality-img">
-                           <img src="https://www.quickobook.com/assets/img/specialities/specialities-04.png" className="img-fluid" alt="Cardiologist" />
+                        <LinkContainer to="/cardio"><img src="https://www.quickobook.com/assets/img/specialities/specialities-04.png" className="img-fluid" alt="Cardiologist" /></LinkContainer>
                            
                         </div>
                         <p>Cardiologist</p>
                      </a>
-                     <a href="#" >
+                     <a  >
 							<div class="speicality-img">
-								<img src="https://www.quickobook.com/assets/img/specialities/specialities-05.png" class="img-fluid" alt="Dentist"/>
+                     <LinkContainer to="/dentist"><img src="https://www.quickobook.com/assets/img/specialities/specialities-05.png" class="img-fluid" alt="Dentist"/></LinkContainer>
 								
 							</div>	
 							<p>Dentist</p>

@@ -10,7 +10,12 @@ import { Footer } from './Components/Footer.jsx';
 import {Signup} from './Components/Signup.jsx';
 import {Login} from './Components/Login.jsx';
 import { Hospitals } from './Components/Hospitals.jsx';
+import { General} from './Components/General.jsx';
 import { Neuro } from './Components/Neuro.jsx';
+import { Cardio } from './Components/Cardio.jsx';
+import { Dentist } from './Components/Dentist.jsx';
+import { Ortho } from './Components/Ortho.jsx';
+import { Urology } from './Components/Urology.jsx';
 import { BookingForm } from './Components/BookingForm.jsx';
 function App() {
   return ( 
@@ -24,7 +29,12 @@ function App() {
       <Route path="/login" element={<Login/>}></Route>
       <Route path="/signup" element={<Signup/>}></Route>
       <Route path="/hospital" element={<Hospitals/>}></Route>
+      <Route path="/general" element={<General/>}></Route>
       <Route path="/neuro" element={<Neuro/>}></Route>
+      <Route path="/cardio" element={<Cardio/>}></Route>
+      <Route path="/dentist" element={<Dentist/>}></Route>
+      <Route path="/ortho" element={<Ortho/>}></Route>
+      <Route path="/urology" element={<Urology/>}></Route>
       <Route path="/bookingForm" element={<BookingForm/>}></Route>
       
         
