@@ -14,10 +14,10 @@ export async function fetchuser(){
 
 //----------------------------------------------------to save the data of User-------------------------------------------
 
-export async function saveUser(userData){
+export async function savePatient(patientData){
    
     try {
-        const response=await axios.post("http://127.0.0.1:4900/user",userData);
+        const response=await axios.post("http://localhost:9090/register",patientData);
         return response.data;
     } catch (error) {
         console.log(error);
@@ -59,7 +59,7 @@ export async function updateStudent(updatedData,Phone){
 
 //--------------------------------------------------------to login as learner--------------------------------------------------
 
-export async function userLogin(credentials){
-    const response = await axios.post("http://127.0.0.1:4900/student/login",credentials);
+export async function patientLogin(credentials){
+    const response = await axios.post("http://localhost:9090/patientLogin",credentials);
     return response.data;
 }

@@ -1,7 +1,7 @@
 import { Container, Col, Row, Form, Alert, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
-import { userLogin } from "../Services/UserServices";
+import { patientLogin } from "../Services/PatientServices";
 import { doctorLogin } from "../Services/DoctorServices";
 import {Image} from "react-bootstrap";
 import login from "./Image/login.jpg";
@@ -24,30 +24,47 @@ export function Login() {
 
     e.preventDefault();
 
-    if (formData.login==='user') {
-      console.log("USER");
+    if (formData.login==='patient') {
+      console.log("patient");
       try {
-        const result = await userLogin(formData);
-        console.log(result);
+        const result = await patientLogin(formData);
+        console.log(result.loginStatusMessage);
         localStorage.setItem("token", result.token);
-        navigate("/");
-      } catch (error) {
-        console.log(error);
-        setLoginError(true);
 
-        setTimeout(() => {
-          setLoginError(false);       //to vanish the message after 2 sec
-        }, 2000);
+        if(result.loginStatus){
+          navigate("/");
+        }
+        else{
+          setLoginError(true);
+
+          setTimeout(() => {
+            setLoginError(false);       //to vanish the message after 2 sec
+          }, 2000);
+        }
+      } 
+      catch (error) {
+        console.log(error);  
       }
     }
     else {
-      console.log("DOCTOR");
+      console.log("doctor");
       try {
         const result = await doctorLogin(formData);
-        console.log(result);
+        console.log(result.loginStatusMessage);
         localStorage.setItem("token", result.token);
+
+        if(result.loginStatus){
         navigate("/doctor");
-      } catch (error) {
+        }
+        else{
+          setLoginError(true);
+
+          setTimeout(() => {
+            setLoginError(false);       //to vanish the message after 2 sec
+          }, 2000);
+        }
+      }
+       catch (error) {
         console.log(error);
         setLoginError(true);
       }
@@ -68,7 +85,7 @@ export function Login() {
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label><b>Gender</b></Form.Label>
               <Row>
-                <Col lg={3}><Form.Check type="radio" label="User" name="login" value="user" checked={formData.login === 'user'} onChange={handleChange} required /></Col>
+                <Col lg={3}><Form.Check type="radio" label="Patient" name="login" value="patient" checked={formData.login === 'patient'} onChange={handleChange} required /></Col>
                 <Col lg={3}><Form.Check type="radio" label="Doctor" name="login" value="doctor" checked={formData.login === 'doctor'} onChange={handleChange} required /></Col>
               </Row>
             </Form.Group>
@@ -97,7 +114,7 @@ export function Login() {
             </Button>
 
           </Form>
-          {loginError ? <Alert style={{ backgroundColor: "rgb(0,204,102)" }}>Invalid Phone or Password</Alert> : null}
+          {loginError ? <Alert style={{ backgroundColor: "#F35F5F" }}>Invalid Credentials</Alert> : null}
           
         </Col>
         <Col lg={1}>
