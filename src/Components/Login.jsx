@@ -5,8 +5,13 @@ import { patientLogin } from "../Services/PatientServices";
 import { doctorLogin } from "../Services/DoctorServices";
 import {Image} from "react-bootstrap";
 import login from "./Image/login.jpg";
+import { useUserContext } from "../Context/Context";
 export function Login() {
   const navigate = useNavigate();
+
+  const {userState, updateState} =useUserContext();
+
+  console.log(userState);
 
   const [formData, setFormData] = useState(
     {
@@ -29,6 +34,8 @@ export function Login() {
       try {
         const result = await patientLogin(formData);
         console.log(result.loginStatusMessage);
+        updateState({...result,userType:'patient'});
+        console.log({...result,userType:'patient'});
         localStorage.setItem("token", result.token);
 
         if(result.loginStatus){
@@ -51,10 +58,11 @@ export function Login() {
       try {
         const result = await doctorLogin(formData);
         console.log(result.loginStatusMessage);
+        updateState({...result,userType:'doctor'});
         localStorage.setItem("token", result.token);
 
         if(result.loginStatus){
-        navigate("/doctor");
+        navigate("/doctorDashBoard");
         }
         else{
           setLoginError(true);
