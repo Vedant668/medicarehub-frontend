@@ -1,9 +1,10 @@
 import { Container} from "react-bootstrap";
 import {LinkContainer} from "react-router-bootstrap";
 import "./AllCss.css"; 
+import { useNavigate } from "react-router-dom";
 
 export function Clinispecial() {
-   
+   const navigate=useNavigate();
    return (
       <Container className="Clinispecial">
       <section className="section section-specialities">
@@ -29,8 +30,6 @@ export function Clinispecial() {
                      </div>
                      <p>Neurology</p>
                      </a>
-                     
-                    
 
                      <a>
                         <div className="speicality-img">
@@ -48,7 +47,9 @@ export function Clinispecial() {
                         <p>Orthopedic</p>
                      </a>
 
-                     <a >
+
+							</div>	 
+                      <a >
                         <div className="speicality-img">
                         <LinkContainer to="/cardio"><img src="https://www.quickobook.com/assets/img/specialities/specialities-04.png" className="img-fluid" alt="Cardiologist" /></LinkContainer>
                            
@@ -58,10 +59,8 @@ export function Clinispecial() {
                      <a  >
 							<div class="speicality-img">
                      <LinkContainer to="/dentist"><img src="https://www.quickobook.com/assets/img/specialities/specialities-05.png" class="img-fluid" alt="Dentist"/></LinkContainer>
-								
-							</div>	
 							<p>Dentist</p>
-						</a>
+						</a></LinkContainer>
 				
                   </div>
                </div>
