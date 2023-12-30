@@ -17,9 +17,12 @@ import { Dentist } from './Components/Dentist.jsx';
 import { Ortho } from './Components/Ortho.jsx';
 import { Urology } from './Components/Urology.jsx';
 import { BookingForm } from './Components/BookingForm.jsx';
+import { UserContextProvider } from './Context/Context.js';
+import { DoctorDashboard } from './Components/DoctorDashboard.jsx';
 function App() {
   return ( 
   <BrowserRouter>
+    <UserContextProvider>
     <NavigationBar></NavigationBar>
     <Routes>
       <Route path="/" element={<Home/>}> </Route>
@@ -36,10 +39,12 @@ function App() {
       <Route path="/ortho" element={<Ortho/>}></Route>
       <Route path="/urology" element={<Urology/>}></Route>
       <Route path="/bookingForm" element={<BookingForm/>}></Route>
+      <Route path="/doctorDashBoard" element={<DoctorDashboard/>}></Route>
       
         
     </Routes>
     <Footer></Footer>
+    </UserContextProvider>
   </BrowserRouter>
   );
 }

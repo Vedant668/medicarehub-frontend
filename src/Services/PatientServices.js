@@ -1,5 +1,6 @@
 import axios from "axios";
 
+let url='http://localhost:9090';
 //------------------------------------------------to fetch the data of learner-------------------------------------------
 
 export async function fetchuser(){
@@ -62,4 +63,19 @@ export async function updateStudent(updatedData,Phone){
 export async function patientLogin(credentials){
     const response = await axios.post("http://localhost:9090/patientLogin",credentials);
     return response.data;
+}
+
+
+//----------------------------------------------------to save appointment-------------------------------------------
+
+export async function bookAppointment(appData){
+   
+    try {
+        console.log('appdata',appData)
+        const response=await axios.post(url+"/bookAppointment?patientId="+appData.patientId+"&doctorId="+appData.doctorId,appData);
+        
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
 }

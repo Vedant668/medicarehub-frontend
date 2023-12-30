@@ -153,4 +153,5 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#60EFFF", en
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  color: white;
 }
