@@ -1,34 +1,5 @@
-
-
-import {deleteStudent} from "../Services/PatientServices";
-
-
-// export function DoctorDashboard(){
-
-//     const {userState, updateState} =useUserContext();
-//     let doctorId = userState.loginId;
-
-//     useEffect(() => {
-//         // try {
-//         //     async function fetchData() {
-//         //         let response = await getAppointmentsByDocterId(doctorId);
-//         //         console.log(response);
-//         //     }
-//         //     fetchData();
-//         // }
-//         // catch (error) {
-//         //     console.log(error);
-//         // }
-//     }, []);
-
-//     return(
-//         <Container>
-           
-//         </Container>
-//     )
-// }
 import { useUserContext } from "../Context/Context";
-import { getAppointmentsByDoctorId } from "../Services/DoctorServices";
+import { getAppointmentsByDoctorId ,deleteAppointment} from "../Services/DoctorServices";
 import { Button, Container, Table, Modal ,Row} from "react-bootstrap";
 
 import { useEffect, useState } from "react";
@@ -37,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 export function DoctorDashboard() {
 
-    // const [students, setStudents] = useState([]);
+    
+
     const [appointments, setAppointments] = useState([]);
 
     const navigate = useNavigate();
@@ -57,46 +29,38 @@ export function DoctorDashboard() {
     }
 
 
-    //-----------------------------------to delete entry of learner onclicking delete-----------------------------------------------------------------------
+    //-----------------------------------to delete entry of appointment onclicking delete-----------------------------------------------------------------------
 
-    // const [selectedPhone, setSelectedPhone] = useState();
+    const [selectedPhone, setSelectedPhone] = useState();
+    const [appId, setSelectedAppId] = useState();
 
-    // const handleDeleteClick = async () => {
-
-    //     try {
-    //         const response = await deleteStudent(selectedPhone);
-    //         console.log(response);
-    //         await populateStudentState();
-    //         closeModalDialog();
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
+    const handleDeleteClick = async () => {
+        console.log(appId);
+        try {
+            const response = await deleteAppointment(appId);
+            console.log(response);
+            await populateAppointmentsState();
+            closeModalDialog();
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     //-----------------------------------to fetch learner from database-----------------------------------------------------------------------------
 
-    // async function populateStudentState() {
-    //     try {
-    //         const data = await getAppointmentsByDocterId(doctorId);
-    //         console.log(data);
-    //          setAppointments(data);
-    //          console.log(appointments);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
     useEffect(() => {
 
         if(userState.loginId)
              populateAppointmentsState();
     }, [userState.loginId]);
 
+    
 
     async function populateAppointmentsState() {
         try {
             const data = await getAppointmentsByDoctorId(userState.loginId);
             console.log(data);
-    
+           
             setAppointments(data);
         } catch (error) {
             console.log(error);
@@ -133,11 +97,12 @@ export function DoctorDashboard() {
                                         <td>
                                             <Button className="me-5" variant="danger" onClick={() => {
                                                 openModalDialog();
-                                            }}>Delete</Button>
+                                                setSelectedAppId(s.id);
+                                            }}>Reject Appointment</Button>
                                             <Button variant="primary" onClick={() => {
                                             //    navigate(`/edit/${s.id}`);
                                                navigate(`/edit/${s.id}`, { state: { appointmentData: s } });
-                                            }}>Edit</Button>
+                                            }}>Update Appointment</Button>
                                         </td>
                                     </tr>
                                 )
@@ -153,7 +118,7 @@ export function DoctorDashboard() {
                 {/* <Modal.Body>Are you sure to delete Learner with Phone Number {selectedPhone}?</Modal.Body> */}
                 <Modal.Footer>
                     <Button variant="success" onClick={() => {
-                        // handleDeleteClick();
+                         handleDeleteClick();
                     }}>
                         Yes
                     </Button>

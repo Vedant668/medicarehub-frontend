@@ -33,7 +33,7 @@ function App() {
     let loginPhone = localStorage.getItem("loginPhone");
     let loginGender =localStorage.getItem("loginGender");
     let loginCity =localStorage.getItem("loginCity");
-    let userType = localStorage.getItem("userType")
+    let userType = localStorage.getItem("userType");
     let isLoggedIn =localStorage.getItem("isLoggedIn");
    
     updateState({
