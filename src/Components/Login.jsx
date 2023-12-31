@@ -34,7 +34,7 @@ export function Login() {
       try {
         const result = await patientLogin(formData);
         console.log(result.loginStatusMessage);
-        updateState({...result,userType:'patient'});
+        updateState({...result,userType:'patient',isLoggedIn:'true'});
         console.log({...result,userType:'patient'});
         localStorage.setItem("token", result.token);
         
@@ -61,6 +61,7 @@ export function Login() {
       } 
       catch (error) {
         console.log(error);  
+        setLoginError(true);
       }
     }
     else {
@@ -68,7 +69,7 @@ export function Login() {
       try {
         const result = await doctorLogin(formData);
         console.log(result.loginStatusMessage);
-        updateState({...result,userType:'doctor'});
+        updateState({...result,userType:'doctor',isLoggedIn:'true'});
 
         localStorage.setItem("loginId", result.loginId);
         localStorage.setItem("loginStatus", result.loginStatus);

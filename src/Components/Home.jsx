@@ -21,7 +21,7 @@ export function Home(){
       const navigate=useNavigate();
 
       const [open, setOpen] = useState(false)
-
+      console.log(userState);
     return(
         <Container fluid className="Homepage d-flex flex-column align-items-center justify-content-center">
 
@@ -71,6 +71,8 @@ export function Home(){
       <Card.Img variant="top" src={booking} />
       <Card.Body style={{paddingTop:'15px'}}>   
       
+
+     
   {userState.isLoggedIn === 'true' ? <>
   <Button variant="primary"  onClick={() => { navigate("/bookingForm")}}>Book Now</Button>
   </>  :<>

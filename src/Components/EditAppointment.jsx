@@ -4,7 +4,7 @@
  import Accordion from 'react-bootstrap/Accordion';
  import Filter from "./Filter";
 import { useEffect, useState } from "react";
-import { getAllDoctors } from "../Services/DoctorServices";
+import { getAllDoctors ,updateAppointmentsByAppIdAndDocId} from "../Services/DoctorServices";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useUserContext } from "../Context/Context";
 
@@ -56,22 +56,23 @@ const {userState, updateState} =useUserContext();
 
     const handleSubmit = async (e) => {
 
-        // e.preventDefault();
-        // console.log(formData);
+         e.preventDefault();
+         console.log(formData);
 
         try {
             
-        //     let data ={...formData, patientId: userState.loginId.toString()};
+             let data ={...formData, doctorId: userState.loginId.toString()};
+             console.log(userState.loginId);
 
-        //      const result = await bookAppointment(data);
-        //     setIsSubmitted(true);
+              const result = await updateAppointmentsByAppIdAndDocId(userState.loginId,formData);
+            setIsSubmitted(true);
 
 
-        //     setTimeout(() => {
-        //         setIsSubmitted(false)       //to vanish the registered successful message after 2 sec
-        //     }, 2000);
+             setTimeout(() => {
+                 setIsSubmitted(false)       //to vanish the registered successful message after 2 sec
+             }, 2000);
 
-        //     console.log(result.message);
+             console.log(result.message);
 
         } catch (error) {
             console.log(error);

@@ -13,7 +13,7 @@ export async function fetchuser(){
     }
 }
 
-//----------------------------------------------------to save the data of User-------------------------------------------
+//----------------------------------------------------to save the register patient-------------------------------------------
 
 export async function savePatient(patientData){
    
@@ -25,40 +25,31 @@ export async function savePatient(patientData){
     }
 }
 
-//----------------------------------------------------------to delete the data of learner-----------------------------------------
 
-export async function deleteStudent(Phone){
-    try {
-       const response = await axios.delete(`http://127.0.0.1:4900/student/${Phone}`);
-       return response.data;
-    } catch (error) {
-        console.log(error);
-    }
-}
 
 //----------------------------------------------------------to fetch unique learner by phone number----------------------------
-export async function fetchStudentByPhone(Phone){
-    try {
-        const response = await axios.get(`http://127.0.0.1:4900/student/${Phone}`);
-        return response.data;
-     } catch (error) {
-         console.log(error);
-     }
-}
+// export async function fetchStudentByPhone(Phone){
+//     try {
+//         const response = await axios.get(`http://127.0.0.1:4900/student/${Phone}`);
+//         return response.data;
+//      } catch (error) {
+//          console.log(error);
+//      }
+// }
 
 
 //---------------------------------------------------------to update learner data by phone number--------------------------------
 
-export async function updateStudent(updatedData,Phone){
-    try {
-        const response = await axios.put(`http://127.0.0.1:4900/student/${Phone}`,updatedData);
-        return response.data;
-     } catch (error) {
-         console.log(error);
-     }
-}
+// export async function updateStudent(updatedData,Phone){
+//     try {
+//         const response = await axios.put(`http://127.0.0.1:4900/student/${Phone}`,updatedData);
+//         return response.data;
+//      } catch (error) {
+//          console.log(error);
+//      }
+// }
 
-//--------------------------------------------------------to login as learner--------------------------------------------------
+//--------------------------------------------------------to login as Patient--------------------------------------------------
 
 export async function patientLogin(credentials){
     const response = await axios.post("http://localhost:9090/patientLogin",credentials);
