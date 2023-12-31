@@ -70,3 +70,41 @@ export async function bookAppointment(appData){
         console.log(error);
     }
 }
+
+
+//-----------------------------------------------------------------------get appointments by patientId---------------------------
+
+ export async function getAppointmentsByPatientId(patientId){
+
+    
+    const response = await axios.get(`${url}/getAppointmentsByPatientId/${patientId}`);
+    
+    return response.data;
+}
+
+//----------------------------------------------------------to delete the appointment -----------------------------------------
+
+
+//--------------------we are deleting appointment by appointmentId and by using the doctorService deleteAppointment method-------------------------------------
+
+// export async function deleteAppointment(appId){
+//     try {
+//        const response = await axios.delete(url+`/rejectAppointmentByDoctor/${appId}`);
+//        return response.data;
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
+
+
+
+//-----------------------------------------------------------------------to update appointment by appointmentId and doctorId---------------------------
+
+export async function updateAppointmentsByAppIdAndPatId(patientId,credentials){
+
+    
+    const response = await axios.put(`${url}/updateByPatient/${patientId}`,credentials);
+    
+    return response.data;
+}

@@ -155,3 +155,11 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#60EFFF", en
   background-position: center;
   color: white;
 }
+
+.EditForm{
+  background-image: url(./Image/editbg2.png);
+
+  background-repeat: no-repeat;
+  background-size:auto;
+  background-position:  center;
+}

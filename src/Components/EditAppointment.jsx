@@ -82,9 +82,9 @@ const {userState, updateState} =useUserContext();
 
     console.log(formData)
     return (
-        <div>
-        <Container>
-        <Form onSubmit={handleSubmit}>
+        
+        <Container fluid className='EditForm' style={{minHeight:'650px'}}>
+        <Form onSubmit={handleSubmit}  style={{width:'400px',paddingTop:'150px'}}>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label><b>Symptoms</b></Form.Label>
@@ -146,7 +146,7 @@ const {userState, updateState} =useUserContext();
                     </Form>
         </Container>
         
-    </div>
+    
     )
  }
 
