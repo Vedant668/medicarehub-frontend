@@ -13,8 +13,10 @@ export async function getAllDoctors(){
     const response = await axios.get(url+"/getAllDoctors");
     return response.data;
 }
-export async function getAppointmentsByDocterId(doctorId){
+export async function getAppointmentsByDoctorId(doctorId){
 
-    const response = await axios.get(url+"/getAppointmentsByDocterId?doctorId="+doctorId);
+    
+    const response = await axios.get(`${url}/getAppointmentsByDoctorId/${doctorId}`);
+    
     return response.data;
 }

@@ -18,12 +18,31 @@ import { Ortho } from './Components/Ortho.jsx';
 import { Urology } from './Components/Urology.jsx';
 
 import { BookingForm } from './Components/BookingForm.jsx';
-import { UserContextProvider } from './Context/Context.js';
+import { UserContextProvider, useUserContext } from './Context/Context.js';
 import { DoctorDashboard } from './Components/DoctorDashboard.jsx';
+import EditAppointment from './Components/EditAppointment.jsx';
+import { useEffect } from 'react';
+
 function App() {
+  const {userState, updateState} =useUserContext();
+  useEffect(()=>{
+    let loginId = localStorage.getItem("loginId");
+    let loginStatus = localStorage.getItem("loginStatus");
+    let loginName = localStorage.getItem("loginName");
+    let loginEmail = localStorage.getItem("loginEmail");
+    let loginPhone = localStorage.getItem("loginPhone");
+    let loginGender =localStorage.getItem("loginGender");
+    let loginCity =localStorage.getItem("loginCity");
+    let userType = localStorage.getItem("userType")
+    let isLoggedIn =localStorage.getItem("isLoggedIn");
+   
+    updateState({
+      loginId,loginStatus,loginName,loginEmail,loginPhone,loginGender,loginCity,userType,isLoggedIn
+    })
+
+  },[])
   return ( 
   <BrowserRouter>
-    <UserContextProvider>
     <NavigationBar></NavigationBar>
     <Routes>
       <Route path="/" element={<Home/>}> </Route>
@@ -39,14 +58,13 @@ function App() {
       <Route path="/dentist" element={<Dentist/>}></Route>
       <Route path="/ortho" element={<Ortho/>}></Route>
       <Route path="/urology" element={<Urology/>}></Route>
-
       <Route path="/bookingForm" element={<BookingForm/>}></Route>
       <Route path="/doctorDashBoard" element={<DoctorDashboard/>}></Route>
+      <Route path="/edit/:id" element={<EditAppointment/>} />
       
         
     </Routes>
     <Footer></Footer>
-    </UserContextProvider>
   </BrowserRouter>
   );
 }

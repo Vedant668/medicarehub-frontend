@@ -10,11 +10,13 @@ import booking from './Image/bookappoint.png';
 
 import { Clinispecial } from "./Clinispecial";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../Context/Context";
 export function Home(){
     const carouselItemStyle = {
         height: "600px", // Adjust the height as needed
         
       };
+      const {userState, updateState} =useUserContext();
 
       const navigate=useNavigate();
 
@@ -67,8 +69,14 @@ export function Home(){
     <Row>
     <Card style={{ width: '1200px' }}>
       <Card.Img variant="top" src={booking} />
-      <Card.Body style={{paddingTop:'15px'}}>        
-        <Button variant="primary"  onClick={() => { navigate("/bookingForm")}}>Book Now</Button>
+      <Card.Body style={{paddingTop:'15px'}}>   
+      
+  {userState.isLoggedIn === 'true' ? <>
+  <Button variant="primary"  onClick={() => { navigate("/bookingForm")}}>Book Now</Button>
+  </>  :<>
+  <Button variant="primary"  onClick={() => { navigate("/login")}}>Book Now</Button>
+  </>   }
+       
       </Card.Body>
     </Card>
     </Row>

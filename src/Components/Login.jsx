@@ -37,6 +37,16 @@ export function Login() {
         updateState({...result,userType:'patient'});
         console.log({...result,userType:'patient'});
         localStorage.setItem("token", result.token);
+        
+        localStorage.setItem("loginId", result.loginId);
+        localStorage.setItem("loginStatus", result.loginStatus);
+        localStorage.setItem("loginName", result.loginName);
+        localStorage.setItem("loginEmail", result.loginEmail);
+        localStorage.setItem("loginPhone", result.loginPhone);
+        localStorage.setItem("loginGender", result.loginGender);
+        localStorage.setItem("loginCity", result.loginCity);
+        localStorage.setItem("userType",'patient')
+        localStorage.setItem("isLoggedIn",'true')
 
         if(result.loginStatus){
           navigate("/");
@@ -59,7 +69,16 @@ export function Login() {
         const result = await doctorLogin(formData);
         console.log(result.loginStatusMessage);
         updateState({...result,userType:'doctor'});
-        localStorage.setItem("token", result.token);
+
+        localStorage.setItem("loginId", result.loginId);
+        localStorage.setItem("loginStatus", result.loginStatus);
+        localStorage.setItem("loginName", result.loginName);
+        localStorage.setItem("loginEmail", result.loginEmail);
+        localStorage.setItem("loginPhone", result.loginPhone);
+        localStorage.setItem("loginGender", result.loginGender);
+        localStorage.setItem("loginCity", result.loginCity);
+        localStorage.setItem("userType",'doctor')
+        localStorage.setItem("isLoggedIn",'true')
 
         if(result.loginStatus){
         navigate("/doctorDashBoard");

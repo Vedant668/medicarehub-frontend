@@ -28,7 +28,7 @@ import {deleteStudent} from "../Services/PatientServices";
 //     )
 // }
 import { useUserContext } from "../Context/Context";
-import { getAppointmentsByDocterId } from "../Services/DoctorServices";
+import { getAppointmentsByDoctorId } from "../Services/DoctorServices";
 import { Button, Container, Table, Modal ,Row} from "react-bootstrap";
 
 import { useEffect, useState } from "react";
@@ -86,34 +86,24 @@ export function DoctorDashboard() {
     //     }
     // }
     useEffect(() => {
-        populateStudentState();
-    }, []);
+
+        if(userState.loginId)
+             populateAppointmentsState();
+    }, [userState.loginId]);
 
 
-    async function populateStudentState() {
+    async function populateAppointmentsState() {
         try {
-            const data = await getAppointmentsByDocterId(doctorId);
+            const data = await getAppointmentsByDoctorId(userState.loginId);
             console.log(data);
     
-            // Map the required data fields from the Appointments array
-            const mappedAppointments = data.map((appointment) => ({
-                id: appointment.id,
-                name: appointment.patient.Name,
-                username: appointment.patient.Username,
-                password: appointment.patient.Password,
-                gender: appointment.patient.Gender,
-                phone: appointment.patient.Phone,
-                email: appointment.patient.Email,
-                // Add more fields as needed
-            }));
-    
-            setAppointments(mappedAppointments);
-            console.log(mappedAppointments);
+            setAppointments(data);
         } catch (error) {
             console.log(error);
         }
     }
 
+    console.log(appointments)
 
     return (
         <Container className="LearnerList" style={{padding:'100px',color:'white'}}>
@@ -122,33 +112,31 @@ export function DoctorDashboard() {
                 <Table className=" mt-4" >
                     <thead className="border-dark">
                         <tr >
-                            <th>Name</th>
-                            <th>Username</th>
-                            <th>Password</th>
-                            <th>Gender</th>
-                            <th>Phone Number</th>
-                            <th>Email Address</th>
-                            <th>Admin    Operations</th>
+                            
+                        <th> Appointment date</th>
+                        <th> Appointment Time</th>
+                        <th> Symptoms</th>
+                            <th>Height</th>
+                            <th>Weight</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            appointments.map((s) => {
+                            appointments.map((s,i) => {
                                 return (
-                                    <tr>
-                                        <td>{s.Name}</td>
-                                        <td>{s.Username}</td>
-                                        <td>{s.Password}</td>
-                                        <td>{s.Gender}</td>
-                                        <td>{s.Phone}</td>
-                                        <td>{s.Email}</td>
+                                    <tr key={i}>
+                                        <td>{s.appdate}</td>
+                                        <td>{s.apptime}</td>
+                                        <td>{s.symptoms}</td>
+                                        <td>{s.height}</td>
+                                        <td>{s.weight}</td>
                                         <td>
                                             <Button className="me-5" variant="danger" onClick={() => {
                                                 openModalDialog();
-                                                // setSelectedPhone();
                                             }}>Delete</Button>
                                             <Button variant="primary" onClick={() => {
-                                            //    navigate(`/edit/${}`);
+                                            //    navigate(`/edit/${s.id}`);
+                                               navigate(`/edit/${s.id}`, { state: { appointmentData: s } });
                                             }}>Edit</Button>
                                         </td>
                                     </tr>

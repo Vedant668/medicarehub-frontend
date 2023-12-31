@@ -2,8 +2,25 @@ import {Navbar ,Container ,Nav ,Button} from 'react-bootstrap';
 import {LinkContainer} from "react-router-bootstrap";
 import './AllCss.css';
 import Logo from './Image/Medicarehub.jpeg';
+import { useUserContext } from '../Context/Context';
+import { useNavigate } from 'react-router-dom';
 export function NavigationBar(){
-    
+  const {userState, updateState} =useUserContext();
+  const navigate = useNavigate();
+
+  const handleLogout = () =>{
+    localStorage.setItem("loginId", "");
+    localStorage.setItem("loginStatus","");
+    localStorage.setItem("loginName","");
+    localStorage.setItem("loginEmail", "");
+    localStorage.setItem("loginPhone", "");
+    localStorage.setItem("loginGender", "");
+    localStorage.setItem("loginCity", "");
+    localStorage.setItem("userType",'')
+    localStorage.setItem("isLoggedIn",'false');
+    updateState({})
+    navigate('/')
+  }
     return(
         <Navbar expand="lg" className=" Navbar bg-body-tertiary sticky-top" bg="dark" style={{height:'80px', fontSize:'20px',color:'white'}}>
 
@@ -52,18 +69,33 @@ export function NavigationBar(){
             <Button variant="outline-success" className="me-5">Admin</Button>
             </LinkContainer> */}
   
-            <LinkContainer to="/login">
-            <Button  className="loginbutton me-2">Login</Button>
-            </LinkContainer>
-            
-  
-            {/* <LinkContainer to="/signinadmin">
-            <Button variant="primary" className="me-2" >Sign In</Button>
-            </LinkContainer> */}
-            
-            <LinkContainer to="/signup">
-            <Button variant="dark" className="me-3">Sign Up</Button>
-            </LinkContainer>
+
+  {userState.isLoggedIn === 'true' ? (
+              <>
+              <LinkContainer to="/" onClick={handleLogout}>
+              <Button  className="loginbutton me-2">Sign Out</Button>
+              </LinkContainer>
+              
+              <LinkContainer to="/DoctorDashboard">
+              <Button variant="dark" className="me-3">User</Button>
+              </LinkContainer>
+              </>
+            ): (
+              <>
+              <LinkContainer to="/login">
+              <Button  className="loginbutton me-2">Login</Button>
+              </LinkContainer>
+              
+    
+              {/* <LinkContainer to="/signinadmin">
+              <Button variant="primary" className="me-2" >Sign In</Button>
+              </LinkContainer> */}
+              
+              <LinkContainer to="/signup">
+              <Button variant="dark" className="me-3">Sign Up</Button>
+              </LinkContainer>
+              </>
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>
