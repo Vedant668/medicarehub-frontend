@@ -76,9 +76,14 @@ export function NavigationBar(){
               <Button  className="loginbutton me-2">Sign Out</Button>
               </LinkContainer>
               
+              {userState.userType === 'doctor' ?
               <LinkContainer to="/DoctorDashboard">
               <Button variant="dark" className="me-3">User</Button>
               </LinkContainer>
+              :  <LinkContainer to="/PatientDashboard">
+              <Button variant="dark" className="me-3">User</Button>
+              </LinkContainer>
+              }
               </>
             ): (
               <>
