@@ -1,8 +1,8 @@
 import { useUserContext } from "../Context/Context";
 import { getAppointmentsByPatientId } from "../Services/PatientServices";
 import { deleteAppointment } from "../Services/DoctorServices";
-import { Button, Container, Table, Modal ,Row} from "react-bootstrap";
-
+import { Button, Container, Table, Modal ,Row, Card, ListGroup, ListGroupItem, Col} from "react-bootstrap";
+import profilepic from "./Image/profilepic.jpg";
 import { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -71,18 +71,43 @@ export function PatientDashboard() {
     console.log(appointments)
 
     return (
-        <Container className="LearnerList" style={{padding:'100px',color:'white'}}>
+        <Container fluid className="PatientDashboard" style={{padding:'50px',color:'white'}}>
+<Row><Col lg={3}>
+<Card style={{ width: '18rem' }}>
+<Card.Header as="h5">Profile</Card.Header>
+      <Card.Img variant="top" src={profilepic} alt="User Profile" />
+      <Card.Body>
+        <Card.Title>{userState.loginName}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">{"Patient"}</Card.Subtitle>
+        <ListGroup className="list-group-flush">
+          {/* <ListGroupItem>Name: {userState.loginName}</ListGroupItem> */}
+          <ListGroupItem>Email: {userState.loginEmail}</ListGroupItem>
+          <ListGroupItem>Phone: {userState.loginPhone}</ListGroupItem>
+          {/* <ListGroupItem>Date of Birth: {userState.loginDateOfBirth}</ListGroupItem> */}
+          <ListGroupItem>Gender: {userState.loginGender}</ListGroupItem>
+          <ListGroupItem>City: {userState.loginCity}</ListGroupItem>
+          {/* Add more details as needed */}
+        </ListGroup>
+        <Button variant="primary" onClick={() => {
+                         navigate("/updatePatient")
+                    }}>Edit Profile</Button>
+      </Card.Body>
+    </Card>
+</Col>
+<Col>
             <Row><h1>Appointment List</h1></Row>
             {appointments.length > 0 ?
-                <Table className=" mt-4" >
+                <Table className=" AppList" >
                     <thead className="border-dark">
                         <tr >
-                            
-                        <th> Appointment date</th>
-                        <th> Appointment Time</th>
-                        <th> Symptoms</th>
+                            <th> Appointment date</th>
+                            <th> Appointment Time</th>
+                            <th> Symptoms</th>
                             <th>Height</th>
                             <th>Weight</th>
+                            <th>Cancel</th>
+                            <th>Update</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -100,6 +125,8 @@ export function PatientDashboard() {
                                                 openModalDialog();
                                                 setSelectedAppId(s.id);
                                             }}>Cancel Appointment</Button>
+                                            </td>
+                                            <td>
                                             <Button variant="primary" onClick={() => {
                                             //    navigate(`/edit/${s.id}`);
                                                navigate(`/editPatient/${s.id}`, { state: { appointmentData: s } });
@@ -116,7 +143,7 @@ export function PatientDashboard() {
                 <Modal.Header closeButton>
                     <Modal.Title>Confirmation</Modal.Title>
                 </Modal.Header>
-                {/* <Modal.Body>Are you sure to delete Learner with Phone Number {selectedPhone}?</Modal.Body> */}
+                <Modal.Body>Are you sure to delete Appointment ?</Modal.Body>
                 <Modal.Footer>
                     <Button variant="success" onClick={() => {
                          handleDeleteClick();
@@ -128,6 +155,7 @@ export function PatientDashboard() {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            </Col></Row>
         </Container>
     );
 }

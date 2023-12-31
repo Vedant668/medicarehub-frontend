@@ -1,7 +1,7 @@
 import { useUserContext } from "../Context/Context";
 import { getAppointmentsByDoctorId ,deleteAppointment} from "../Services/DoctorServices";
-import { Button, Container, Table, Modal ,Row} from "react-bootstrap";
-
+import { Button, Container, Table, Modal ,Row, Col, Card, ListGroup, ListGroupItem} from "react-bootstrap";
+import profilepic from "./Image/Doctorimg.jpeg";
 import { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -70,8 +70,32 @@ export function DoctorDashboard() {
     console.log(appointments)
 
     return (
-        <Container className="LearnerList" style={{padding:'100px',color:'white'}}>
-            <Row><h1>Appointment List</h1></Row>
+        <Container fluid className="DoctorDashboard" style={{padding:'100px',color:'white'}}>
+<Row>
+<Col lg={3}>
+<Card style={{ width: '18rem' }}>
+<Card.Header as="h5">Profile</Card.Header>
+      <Card.Img variant="top" src={profilepic} alt="User Profile" />
+      <Card.Body>
+        <Card.Title>{userState.loginName}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">{"Doctor"}</Card.Subtitle>
+        <ListGroup className="list-group-flush">
+          {/* <ListGroupItem>Name: {userState.loginName}</ListGroupItem> */}
+          <ListGroupItem>Email: {userState.loginEmail}</ListGroupItem>
+          <ListGroupItem>Phone: {userState.loginPhone}</ListGroupItem>
+          {/* <ListGroupItem>Date of Birth: {userState.loginDateOfBirth}</ListGroupItem> */}
+          <ListGroupItem>Gender: {userState.loginGender}</ListGroupItem>
+          <ListGroupItem>City: {userState.loginCity}</ListGroupItem>
+          {/* Add more details as needed */}
+        </ListGroup>
+        {/* <Button variant="primary" onClick={() => {
+                         navigate("")
+                    }}>Edit Profile</Button> */}
+      </Card.Body>
+    </Card>
+</Col>
+<Col>
+            <Row><h1 style={{color:'black'}}>Appointment List</h1></Row>
             {appointments.length > 0 ?
                 <Table className=" mt-4" >
                     <thead className="border-dark">
@@ -82,6 +106,8 @@ export function DoctorDashboard() {
                         <th> Symptoms</th>
                             <th>Height</th>
                             <th>Weight</th>
+                            <th>Reject</th>
+                            <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -99,6 +125,8 @@ export function DoctorDashboard() {
                                                 openModalDialog();
                                                 setSelectedAppId(s.id);
                                             }}>Reject Appointment</Button>
+                                            </td>
+                                            <td>
                                             <Button variant="primary" onClick={() => {
                                             //    navigate(`/edit/${s.id}`);
                                                navigate(`/edit/${s.id}`, { state: { appointmentData: s } });
@@ -127,6 +155,8 @@ export function DoctorDashboard() {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            </Col>
+            </Row>
         </Container>
     );
 }

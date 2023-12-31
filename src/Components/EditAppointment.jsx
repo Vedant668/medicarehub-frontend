@@ -83,9 +83,11 @@ const {userState, updateState} =useUserContext();
     console.log(formData)
     return (
         
-        <Container fluid className='EditForm' style={{minHeight:'650px'}}>
-        <Form onSubmit={handleSubmit}  style={{width:'400px',paddingTop:'150px'}}>
-
+        <Container fluid className='DoctorEditForm' style={{minHeight:'650px'}}>
+        
+        <Form onSubmit={handleSubmit}  style={{width:'400px',paddingTop:'100px'}}>
+                        <h1>Edit Appointment</h1>
+                        <br/>
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label><b>Symptoms</b></Form.Label>
                             <Form.Control disabled type="textarea" placeholder="Enter Symptoms" name="symptoms" value={formData?.symptoms} onChange={handleChange} required />

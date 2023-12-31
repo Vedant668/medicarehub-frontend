@@ -3,15 +3,15 @@ import axios from "axios";
 let url='http://localhost:9090';
 //------------------------------------------------to fetch the data of learner-------------------------------------------
 
-export async function fetchuser(){
-    try {
-        const response=await axios.get("http://127.0.0.1:4900/user");
+// export async function fetchuser(){
+//     try {
+//         const response=await axios.get("http://127.0.0.1:4900/user");
         
-        return response.data;
-    } catch (error) {
-        console.log(error);
-    }
-}
+//         return response.data;
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 
 //----------------------------------------------------to save the register patient-------------------------------------------
 
@@ -27,27 +27,28 @@ export async function savePatient(patientData){
 
 
 
-//----------------------------------------------------------to fetch unique learner by phone number----------------------------
-// export async function fetchStudentByPhone(Phone){
-//     try {
-//         const response = await axios.get(`http://127.0.0.1:4900/student/${Phone}`);
-//         return response.data;
-//      } catch (error) {
-//          console.log(error);
-//      }
-// }
+//----------------------------------------------------------to fetch patient by patientId-------------------------------------
+
+export async function fetchPatientById(patientId){
+    try {
+        const response = await axios.get(`${url}/fetchPatientById/${patientId}`);
+        return response.data;
+     } catch (error) {
+         console.log(error);
+     }
+}
 
 
-//---------------------------------------------------------to update learner data by phone number--------------------------------
+//---------------------------------------------------------to update Patient data by patientId--------------------------------
 
-// export async function updateStudent(updatedData,Phone){
-//     try {
-//         const response = await axios.put(`http://127.0.0.1:4900/student/${Phone}`,updatedData);
-//         return response.data;
-//      } catch (error) {
-//          console.log(error);
-//      }
-// }
+export async function updateProfile(updatedData){
+    try {
+        const response = await axios.put(`${url}/updateByPatient`,updatedData);
+        return response.data;
+     } catch (error) {
+         console.log(error);
+     }
+}
 
 //--------------------------------------------------------to login as Patient--------------------------------------------------
 
