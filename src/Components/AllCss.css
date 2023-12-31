@@ -156,10 +156,67 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#60EFFF", en
   color: white;
 }
 
-.EditForm{
+.DoctorEditForm{
   background-image: url(./Image/editbg2.png);
-
   background-repeat: no-repeat;
-  background-size:auto;
+  background-size:cover;
   background-position:  center;
+  padding-left: 200px;
 }
+
+.PatientDashboard{
+  background-image: url(./Image/userDashBg.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.UpdatePatientProfile{
+  background-image: url(./Image/editpatientbg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  
+}
+.DoctorDashboard{
+  background-image: url(./Image/doctordashbg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  
+}
+
+
+/* ---------------------medicine Css------------ */
+
+.MedicineContainer{
+  
+  margin: 0;
+  
+  
+  align-items: center;
+  padding-bottom: 50px;
+  box-sizing: unset;
+
+}
+
+.MedicineCardRow{
+  margin-left: 200px;
+}
+
+.MedicineDiv{
+  align-items: center;
+  padding-top: 50px;
+  background-image: linear-gradient(45deg, aqua, black);
+}
+
+.Medi{
+  margin-left: 220px;
+  color: white;
+}
+
+.AccordMed{
+  padding-left: 100px;
+}
+/*-----------------------------------------------------------------------------------*/
