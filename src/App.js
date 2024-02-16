@@ -25,6 +25,7 @@ import EditPatientAppointment from './Components/EditPatientAppointment.jsx';
 import { useEffect } from 'react';
 import { PatientDashboard } from './Components/PatientDashboard.jsx';
 import { UpdatePatientProfile } from './Components/UpdatePatientProfile.jsx';
+import { AdminDashboard } from './Components/AdminDashboard.jsx';
 
 function App() {
   const {userState, updateState} =useUserContext();
@@ -64,6 +65,7 @@ function App() {
       <Route path="/bookingForm" element={<BookingForm/>}></Route>
       <Route path="/doctorDashBoard" element={<DoctorDashboard/>}></Route>
       <Route path="/patientDashBoard" element={<PatientDashboard/>}></Route>
+      <Route path="/adminDashBoard" element={<AdminDashboard/>}></Route>
       <Route path="/edit/:id" element={<EditAppointment/>} />
       <Route path="/editPatient/:id" element={<EditPatientAppointment/>} />
       <Route path="/updatePatient" element={<UpdatePatientProfile/>} />

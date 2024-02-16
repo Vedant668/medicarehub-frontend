@@ -48,6 +48,23 @@ export function BookingForm() {
     const handleChange = (e) => {
         
         setFormData({ ...formData, [e.target.name]: e.target.value });
+        if (e.target.name === 'appdate') {
+            // Get today's date
+            const today = new Date();
+            // Get the selected date from the input
+            const selectedDate = new Date(e.target.value);
+            // Compare selected date with today's date
+            if (selectedDate < today) {
+                // If selected date is in the past, set it to today's date
+                setFormData({ ...formData, [e.target.name]: today.toISOString().split('T')[0] });
+            } else {
+                // If selected date is valid, update the form data
+                setFormData({ ...formData, [e.target.name]: e.target.value });
+            }
+        } else {
+            // For other fields, update the form data normally
+            setFormData({ ...formData, [e.target.name]: e.target.value });
+        }
     };
    console.log(userState);
     const handleSubmit = async (e) => {
