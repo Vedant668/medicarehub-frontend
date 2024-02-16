@@ -12,6 +12,7 @@ import { Clinispecial } from "./Clinispecial";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../Context/Context";
 export function Home() {
+    
     const carouselItemStyle = {
         height: "600px", // Adjust the height as needed
 

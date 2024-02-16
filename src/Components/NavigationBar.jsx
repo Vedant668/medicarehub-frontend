@@ -77,12 +77,16 @@ export function NavigationBar(){
               </LinkContainer>
               
               {userState.userType === 'doctor' ?
-              <LinkContainer to="/DoctorDashboard">
-              <Button variant="dark" className="me-3">User</Button>
-              </LinkContainer>
-              :  <LinkContainer to="/PatientDashboard">
-              <Button variant="dark" className="me-3">User</Button>
-              </LinkContainer>
+                  <LinkContainer to="/DoctorDashboard">
+                  <Button variant="dark" className="me-3">User</Button>
+                  </LinkContainer>
+              :  (userState.userType === 'patient' ?
+                        <LinkContainer to="/PatientDashboard">
+                        <Button variant="dark" className="me-3">User</Button>
+                        </LinkContainer>
+                        : <LinkContainer to="/AdminDashboard">
+                          <Button variant="dark" className="me-3">User</Button>
+                          </LinkContainer>)
               }
               </>
             ): (
