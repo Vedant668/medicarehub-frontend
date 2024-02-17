@@ -1,11 +1,12 @@
 import { useUserContext } from "../Context/Context";
-import { getAppointmentsByPatientId } from "../Services/PatientServices";
+import { downloadPrescription, getAppointmentsByPatientId } from "../Services/PatientServices";
 import { deleteAppointment } from "../Services/DoctorServices";
 import { Button, Container, Table, Modal ,Row, Card, ListGroup, ListGroupItem, Col} from "react-bootstrap";
 import profilepic from "./Image/profilepic.jpg";
 import { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export function PatientDashboard() {
 
@@ -16,7 +17,7 @@ export function PatientDashboard() {
     const navigate = useNavigate();
 
     const {userState, updateState} =useUserContext();
-    let doctorId = userState.loginId;
+    let patientId = userState.loginId;
 
     //---------------------------------------------to open the delete confirmation modal-------------------------------------------------------------------
 
@@ -67,6 +68,30 @@ export function PatientDashboard() {
             console.log(error);
         }
     }
+    const getPrescription = async () => {
+        
+            if (!patientId) {
+              //setError("Patient ID is required");
+              return "Patient ID is required";
+            }
+        
+            try {
+              const response = await axios.get(
+                `http://localhost:9090/downloadPrescription/${patientId}`,
+                {
+                  responseType: "blob",
+                }
+              );
+              const url = window.URL.createObjectURL(new Blob([response.data]));
+              const link = document.createElement("a");
+              link.href = url;
+              link.setAttribute("download", "medical_history.pdf");
+              document.body.appendChild(link);
+              link.click();
+            } catch (error) {
+              console.error("Error downloading medical history:", error.message);
+            }
+          };
 
     console.log(appointments)
 
@@ -139,6 +164,9 @@ export function PatientDashboard() {
                     </tbody>
                 </Table> : <h2>No Registration Found</h2>}
 
+                <Button size="lg" onClick={getPrescription}>Download Prescription</Button>
+
+
             <Modal show={showDialog} onHide={closeModalDialog}>
                 <Modal.Header closeButton>
                     <Modal.Title>Confirmation</Modal.Title>
@@ -156,6 +184,7 @@ export function PatientDashboard() {
                 </Modal.Footer>
             </Modal>
             </Col></Row>
+            
         </Container>
     );
 }

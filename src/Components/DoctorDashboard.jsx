@@ -117,6 +117,8 @@ export function DoctorDashboard() {
                             <th>Weight</th>
                             <th>Reject</th>
                             <th>Update</th>
+                            <th>Add Prescription</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -146,6 +148,10 @@ export function DoctorDashboard() {
                                                navigate(`/edit/${s.id}`, { state: { appointmentData: s } });
                                             }}>Update Appointment</Button>
                                         </td>
+                                        <td><Button variant="warning" onClick={() => {
+                                                
+                                        navigate(`/prescriptionForm/${s.id}`, { state: { appointmentData: s } });
+                                            }}>Add</Button></td>
                                     </tr>
                                 )
                             })

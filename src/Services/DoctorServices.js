@@ -46,3 +46,16 @@ export async function deleteAppointment(appId){
         console.log(error);
     }
 }
+
+
+//------------------------------------------------to fetch all time slots for particular doctor for dropdown---------------------------
+
+export async function checkAvailability(doctorAndDate) {
+    try {
+        const response = await axios.post(`${url}/getTimeSlot`, doctorAndDate);
+        return response.data;
+    } catch (error) {
+        console.error("Error checking availability:", error);
+        throw error; // Rethrow the error to handle it in the component or other parts of your application
+    }
+}

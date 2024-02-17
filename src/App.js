@@ -26,6 +26,10 @@ import { useEffect } from 'react';
 import { PatientDashboard } from './Components/PatientDashboard.jsx';
 import { UpdatePatientProfile } from './Components/UpdatePatientProfile.jsx';
 import { AdminDashboard } from './Components/AdminDashboard.jsx';
+import MyComponent from './Components/GoogleMaps.jsx';
+import { PrescriptionForm } from './Components/PrescriptionForm.jsx';
+
+
 
 function App() {
   const {userState, updateState} =useUserContext();
@@ -69,7 +73,8 @@ function App() {
       <Route path="/edit/:id" element={<EditAppointment/>} />
       <Route path="/editPatient/:id" element={<EditPatientAppointment/>} />
       <Route path="/updatePatient" element={<UpdatePatientProfile/>} />
-      
+      <Route path="/mycomponent" element={<MyComponent/>}></Route>
+      <Route path="/prescriptionForm/:id" element={<PrescriptionForm/>}></Route>
         
     </Routes>
     <Footer></Footer>
