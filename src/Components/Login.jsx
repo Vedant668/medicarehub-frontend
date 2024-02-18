@@ -102,12 +102,12 @@ export function Login() {
       }
     }
     else {
-      console.log("doctor");
+      console.log("doctor",);
       try {
         const result = await doctorLogin(formData);
         console.log(result.loginStatusMessage);
         updateState({...result,userType:'doctor',isLoggedIn:'true'});
-
+        console.log({...result,userType:'doctor'});
         localStorage.setItem("loginId", result.loginId);
         localStorage.setItem("loginStatus", result.loginStatus);
         localStorage.setItem("loginName", result.loginName);

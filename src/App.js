@@ -5,7 +5,7 @@ import {NavigationBar} from './Components/NavigationBar.jsx';
 import {Medicine} from './Components/Medicine.jsx';
 import {About} from './Components/About.jsx';
 import {Contact} from './Components/Contact.jsx';
-import {BrowserRouter,Routes,Route} from 'react-router-dom';
+import {BrowserRouter,Routes,Route, Navigate, useNavigate} from 'react-router-dom';
 import { Footer } from './Components/Footer.jsx';
 import {Signup} from './Components/Signup.jsx';
 import {Login} from './Components/Login.jsx';
@@ -33,6 +33,7 @@ import { PrescriptionForm } from './Components/PrescriptionForm.jsx';
 
 function App() {
   const {userState, updateState} =useUserContext();
+  // const navigate = useNavigate();
   useEffect(()=>{
     let loginId = localStorage.getItem("loginId");
     let loginStatus = localStorage.getItem("loginStatus");
@@ -43,9 +44,13 @@ function App() {
     let loginCity =localStorage.getItem("loginCity");
     let userType = localStorage.getItem("userType");
     let isLoggedIn =localStorage.getItem("isLoggedIn");
+    let token =localStorage.getItem("token");
+    // if(!isLoggedIn || !token){
+    //   navigate("/login");
+    // }
    
     updateState({
-      loginId,loginStatus,loginName,loginEmail,loginPhone,loginGender,loginCity,userType,isLoggedIn
+      loginId,loginStatus,loginName,loginEmail,loginPhone,loginGender,loginCity,userType,isLoggedIn,token
     })
 
   },[])
