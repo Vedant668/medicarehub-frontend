@@ -39,7 +39,7 @@ const {userState, updateState} =useUserContext();
 
             
             async function fetchData() {
-                let response = await getAllDoctors();
+                let response = await getAllDoctors(userState.token);
                 setDoctorList(response);
 
                 // let appointmentResponse = await getAppointmentById(id);
@@ -90,7 +90,7 @@ const {userState, updateState} =useUserContext();
              console.log(userState.loginId);
             
 
-              const result = await updateAppointmentsByAppIdAndDocId(userState.loginId,formData);
+              const result = await updateAppointmentsByAppIdAndDocId(userState.loginId,formData,userState.token);
             setIsSubmitted(true);
 
             const emailStatus=emailSender(emailData);

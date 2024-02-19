@@ -44,7 +44,7 @@ export function DoctorDashboard() {
     const handleDeleteClick = async () => {
         console.log(appId);
         try {
-            const response = await deleteAppointment(appId);
+            const response = await deleteAppointment(appId,userState.token);
             console.log(response);
             const emailStatus= await emailSender(emailData);
             await populateAppointmentsState();

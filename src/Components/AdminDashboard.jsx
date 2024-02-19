@@ -98,7 +98,7 @@ export function AdminDashboard() {
     const handleDeleteClick = async () => {
         console.log(appId);
         try {
-            const response = await deleteAppointment(appId);
+            const response = await deleteAppointment(appId,userState.token);
             console.log(response);
             await populateAppointmentsState();
             closeModalDialog();
@@ -113,7 +113,7 @@ export function AdminDashboard() {
     const handleRemovePatientClick = async () => {
         console.log(patientId);
         try {
-            const response = await removePatient(patientId);
+            const response = await removePatient(patientId,userState.token);
             console.log(response);
             await populatePatientState();
             closeDeletePatientModalDialog();
@@ -127,7 +127,7 @@ export function AdminDashboard() {
     const handleRemoveDoctorClick = async () => {
         console.log(doctorId);
         try {
-            const response = await removeDoctor(doctorId);
+            const response = await removeDoctor(doctorId,userState.token);
             console.log(response);
             await populateDoctorState();
             closeDeleteDoctorModalDialog();
@@ -142,7 +142,7 @@ export function AdminDashboard() {
     const handleRemoveAdminClick = async () => {
         console.log(adminId);
         try {
-            const response = await removeAdmin(adminId);
+            const response = await removeAdmin(adminId,userState.token);
             console.log(response);
             await populateAdminState();
             closeDeleteAdminnModalDialog();
@@ -196,7 +196,7 @@ export function AdminDashboard() {
     //---------------------------------------- Fill the tables of Doctor---------------------------
     async function populateDoctorState() {
         try {
-            const data = await getDoctors(userState.loginId);
+            const data = await getDoctors(userState.loginId,userState.token);
             console.log(data);
            
             setDoctors(data);
@@ -209,7 +209,7 @@ export function AdminDashboard() {
     //---------------------------------------- Fill the tables of Admin---------------------------
     async function populateAdminState() {
         try {
-            const data = await getAdmins(userState.loginId);
+            const data = await getAdmins(userState.loginId,userState.token);
             console.log(data);
            
             setAdmins(data);
