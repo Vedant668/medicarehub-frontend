@@ -5,6 +5,7 @@ import './AllCss.css';
 import { checkAvailability, getAllDoctors } from '../Services/DoctorServices';
 import { bookAppointment } from '../Services/PatientServices';
 import { useUserContext } from "../Context/Context";
+import { PaymentGateway } from './PyamentForm';
 
 export function BookingForm() {
 
@@ -207,7 +208,6 @@ export function BookingForm() {
                 </Col>
                 <Col lg={7}></Col>
             </Row>
-
 
             <Row className='mt-3' style={{ height: '50px' }}>
                 <Col lg={6}>
