@@ -69,33 +69,44 @@ export function PatientDashboard() {
         }
     }
     const getPrescription = async () => {
-        
-            if (!patientId) {
-              //setError("Patient ID is required");
-              return "Patient ID is required";
-            }
-        
-            try {
-                let headers = {
-                    'Authorization': `Bearer ${userState.token}`,
-                    'Content-Type': 'application/json'
-                  }
-              const response = await axios.get(
-                `http://localhost:9090/downloadPrescription/${patientId}`,{headers},
+        if (!patientId) {
+            return "Patient ID is required";
+        }
+    
+        try {
+            let headers = {
+                'Authorization': `Bearer ${userState.token}`,
+                'Content-Type': 'application/json'
+            };
+    
+            const response = await axios.get(
+                `http://localhost:9090/downloadPrescription/${patientId}`,
                 {
-                  responseType: "blob",
+                    headers,
+                    responseType: "blob",
                 }
-              );
-              const url = window.URL.createObjectURL(new Blob([response.data]));
-              const link = document.createElement("a");
-              link.href = url;
-              link.setAttribute("download", "medical_history.pdf");
-              document.body.appendChild(link);
-              link.click();
-            } catch (error) {
-              console.error("Error downloading medical history:", error.message);
-            }
-          };
+            );
+    
+            const blob = new Blob([response.data], { type: response.headers['content-type'] });
+    
+            // Create a download link
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", "medical_history.pdf");
+    
+            // Append the link to the document and trigger the click event
+            document.body.appendChild(link);
+            link.click();
+    
+            // Clean up by removing the link and revoking the object URL
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error("Error downloading medical history:", error.message);
+        }
+    };
+    
 
     console.log(appointments)
 
