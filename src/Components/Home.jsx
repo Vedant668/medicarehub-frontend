@@ -75,7 +75,7 @@ export function Home() {
 
 
                         {userState.isLoggedIn === 'true' ? <>
-                            <Button variant="primary" onClick={() => { navigate("/bookingForm") }}  style={{position :'absolute',top:'70%', left : '15%',blockSize: '10%', width:'120px', fontSize: '20px'}}>Book Now</Button>
+                            <Button variant="primary" onClick={() => { navigate("/paymentGateway") }}  style={{position :'absolute',top:'70%', left : '15%',blockSize: '10%', width:'120px', fontSize: '20px'}}>Book Now</Button>
                         </> : <>
                             <Button variant="primary" onClick={() => { navigate("/login") }} style={{position :'absolute',top:'70%', left : '15%',blockSize: '10%', width:'120px', fontSize: '20px'}}>Book Now</Button>
                         </>}

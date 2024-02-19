@@ -28,6 +28,7 @@ import { UpdatePatientProfile } from './Components/UpdatePatientProfile.jsx';
 import { AdminDashboard } from './Components/AdminDashboard.jsx';
 import MyComponent from './Components/GoogleMaps.jsx';
 import { PrescriptionForm } from './Components/PrescriptionForm.jsx';
+import { PaymentGateway } from './Components/PyamentForm.jsx';
 
 
 
@@ -80,6 +81,7 @@ function App() {
       <Route path="/updatePatient" element={<UpdatePatientProfile/>} />
       <Route path="/mycomponent" element={<MyComponent/>}></Route>
       <Route path="/prescriptionForm/:id" element={<PrescriptionForm/>}></Route>
+      <Route path="/paymentGateway" element={<PaymentGateway/>}></Route>
         
     </Routes>
     <Footer></Footer>
