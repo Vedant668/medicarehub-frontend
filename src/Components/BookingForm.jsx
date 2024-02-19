@@ -42,7 +42,7 @@ export function BookingForm() {
     useEffect(() => {
         try {
             async function fetchData() {
-                let response = await getAllDoctors();
+                let response = await getAllDoctors(userState.token);
                 setDoctorList(response);
             }
             fetchData();
@@ -55,7 +55,7 @@ export function BookingForm() {
 
     const handleDoctorSelect = async () => {
         try {
-            const result = await checkAvailability(selectedDoctor);     //API for checking available timeslots
+            const result = await checkAvailability(selectedDoctor,userState.token);     //API for checking available timeslots
             setTimeSlots(result);
         } catch (error) {
             console.log(error);
@@ -99,7 +99,7 @@ export function BookingForm() {
 
             let data = { ...formData, patientId: userState.loginId.toString() };
 
-            const result = await bookAppointment(data);
+            const result = await bookAppointment(data,userState.token);
             setIsSubmitted(true);
 
 

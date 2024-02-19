@@ -44,7 +44,7 @@ export function DoctorDashboard() {
     const handleDeleteClick = async () => {
         console.log(appId);
         try {
-            const response = await deleteAppointment(appId);
+            const response = await deleteAppointment(appId,userState.token);
             console.log(response);
             const emailStatus= await emailSender(emailData);
             await populateAppointmentsState();
@@ -66,7 +66,7 @@ export function DoctorDashboard() {
 
     async function populateAppointmentsState() {
         try {
-            const data = await getAppointmentsByDoctorId(userState.loginId);
+            const data = await getAppointmentsByDoctorId(userState.loginId,userState.token);
             console.log(data);
            
             setAppointments(data);

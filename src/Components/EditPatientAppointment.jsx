@@ -27,7 +27,7 @@ const {userState, updateState} =useUserContext();
     useEffect(() => {
         try {
             async function fetchData() {
-                let response = await getAllDoctors();
+                let response = await getAllDoctors(userState.token);
                 setDoctorList(response);
 
                 // let appointmentResponse = await getAppointmentById(id);
@@ -83,7 +83,7 @@ const {userState, updateState} =useUserContext();
              let data ={...formData, patientId: userState.loginId.toString()};
              console.log(userState.loginId);
 
-              const result = await updateAppointmentsByAppIdAndPatId(userState.loginId,formData);
+              const result = await updateAppointmentsByAppIdAndPatId(userState.loginId,formData,userState.token);
             setIsSubmitted(true);
 
 

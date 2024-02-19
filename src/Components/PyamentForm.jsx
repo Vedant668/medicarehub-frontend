@@ -1,37 +1,53 @@
 import axios from "axios";
 import { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
 
 export function PaymentGateway() {
-
     const [fees, setFees] = useState("1000");
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFees(e.target.value);
     }
 
-    const handleSubmit = async(e) => {
-        e.preventDefault(); // Prevent the default form submission behavior
-       
-        console.log("Payment started");
-        console.log(fees);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
+        const url = 'http://localhost:9090/paymentGateway';
 
+        try {
+            const response = await axios.post(url, { fees });
+            const { data } = response;
 
+            const script = document.createElement('script');
+            script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+            document.body.appendChild(script);
 
-            const url='http://localhost:9090/paymentGateway';
+            script.onload = () => {
+                const options = {
+                    key: 'rzp_test_HhgkYLDKc9OTjS',
+                    amount: fees * 100,
+                    currency: 'INR',
+                    name: 'Medicarehub',
+                    description: 'Payment for Services',
+                    order_id: data.id,
+                    handler: (response) => {
+                        console.log(response);
+                        alert('Payment successful!');
+                        navigate('/bookingForm');
+                    },
+                };
 
-            try {
-                // Send the payment request to the server using Axios
-                const response = await axios.post(url, { fees });
-                console.log("Payment successful");
-                console.log(response.data); // Log the response from the server
-            } catch (error) {
-                console.error("Payment failed");
-                console.error(error); // Log any errors that occur during the request
-            }
-
-
+                const rzp = new window.Razorpay(options);
+                rzp.open();
+            };
+        } catch (error) {
+            console.error('Payment failed');
+            console.error(error);
+            alert('Payment failed. Please try again.');
+        }
     }
 
     return (
@@ -40,9 +56,9 @@ export function PaymentGateway() {
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label><b>Fees</b></Form.Label>
-                        <Form.Control disabled type="text" placeholder="1000" name="fees" value={fees} onChange={handleChange}/>
+                        <Form.Control disabled type="text" placeholder="1000" name="fees" value={fees} onChange={handleChange} />
                     </Form.Group>
-                    <Button style={{backgroundColor:"rgb(0,102,102)"}} type="submit">
+                    <Button style={{ backgroundColor: "rgb(0,102,102)" }} type="submit">
                         Pay
                     </Button>
                 </Form>

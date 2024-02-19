@@ -39,7 +39,7 @@ export function PatientDashboard() {
     const handleDeleteClick = async () => {
         console.log(appId);
         try {
-            const response = await deleteAppointment(appId);
+            const response = await deleteAppointment(appId,userState.token);
             console.log(response);
             await populateAppointmentsState();
             closeModalDialog();
@@ -60,7 +60,7 @@ export function PatientDashboard() {
 
     async function populateAppointmentsState() {
         try {
-            const data = await getAppointmentsByPatientId(userState.loginId);
+            const data = await getAppointmentsByPatientId(userState.loginId,userState.token);
             console.log(data);
            
             setAppointments(data);
@@ -76,8 +76,12 @@ export function PatientDashboard() {
             }
         
             try {
+                let headers = {
+                    'Authorization': `Bearer ${userState.token}`,
+                    'Content-Type': 'application/json'
+                  }
               const response = await axios.get(
-                `http://localhost:9090/downloadPrescription/${patientId}`,
+                `http://localhost:9090/downloadPrescription/${patientId}`,{headers},
                 {
                   responseType: "blob",
                 }

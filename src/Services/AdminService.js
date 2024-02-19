@@ -18,28 +18,37 @@ export async function getAppointments(doctorId){
 
 
 //----------------------------------------------------------------------fetch patients--------------------------
-export async function getPatients(){
-
+export async function getPatients(token){
+    let headers = {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
     
-    const response = await axios.get(`${url}/fetchPatients`);
-    
-    return response.data;
-}
-
-//----------------------------------------------------------------------fetch patients--------------------------
-export async function getDoctors(){
-
-    
-    const response = await axios.get(`${url}/fetchDoctors`);
+    const response = await axios.get(`${url}/fetchPatients`,{headers});
     
     return response.data;
 }
 
 //----------------------------------------------------------------------fetch patients--------------------------
-export async function getAdmins(){
-
+export async function getDoctors(token){
+    let headers = {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
     
-    const response = await axios.get(`${url}/fetchAdmins`);
+    const response = await axios.get(`${url}/fetchDoctors`,{headers});
+    
+    return response.data;
+}
+
+//----------------------------------------------------------------------fetch patients--------------------------
+export async function getAdmins(token){
+    let headers = {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    
+    const response = await axios.get(`${url}/fetchAdmins`,{headers});
     
     return response.data;
 }
@@ -47,32 +56,42 @@ export async function getAdmins(){
 
 //-----------------------------------------------------------------------to update appointment by appointmentId and doctorId---------------------------
 
-export async function updateAppointmentsByAppIdAndDocId(doctorId,credentials){
-
+export async function updateAppointmentsByAppIdAndDocId(doctorId,credentials,token){
+    let headers = {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
     
-    const response = await axios.put(`${url}/updateByDoctor/${doctorId}`,credentials);
+    const response = await axios.put(`${url}/updateByDoctor/${doctorId}`,credentials,{headers});
     
     return response.data;
 }
 
 //----------------------------------------------------------to delete the appointment -----------------------------------------
 
-export async function deleteAppointment(appId){
+export async function deleteAppointment(appId,token){
     try {
-       const response = await axios.delete(url+`/rejectAppointmentByDoctor/${appId}`);
+        let headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+       const response = await axios.delete(url+`/rejectAppointmentByDoctor/${appId}`,{headers});
        return response.data;
     } catch (error) {
         console.log(error);
     }
 }
 
-
 //----------------------------------------------------------Remove Patient -----------------------------------------
 
-export async function removePatient(patientId){
+export async function removePatient(patientId,token){
     try {
+        let headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
         console.log("patient remove : ", patientId)
-       const response = await axios.delete(url+`/removePatient/${patientId}`);
+       const response = await axios.delete(url+`/removePatient/${patientId}`,{headers});
        return response.data;
     } catch (error) {
         console.log(error);
@@ -81,9 +100,13 @@ export async function removePatient(patientId){
 
 //----------------------------------------------------------Remove Doctor -----------------------------------------
 
-export async function removeDoctor(doctorId){
+export async function removeDoctor(doctorId,token){
     try {
-       const response = await axios.delete(url+`/removeDoctor/${doctorId}`);
+        let headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+       const response = await axios.delete(url+`/removeDoctor/${doctorId}`,{headers});
        return response.data;
     } catch (error) {
         console.log(error);
@@ -92,9 +115,13 @@ export async function removeDoctor(doctorId){
 
 //----------------------------------------------------------Remove Admin -----------------------------------------
 
-export async function removeAdmin(adminId){
+export async function removeAdmin(adminId,token){
     try {
-       const response = await axios.delete(url+`/removeAdmin/${adminId}`);
+        let headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+       const response = await axios.delete(url+`/removeAdmin/${adminId}`,{headers});
        return response.data;
     } catch (error) {
         console.log(error);
