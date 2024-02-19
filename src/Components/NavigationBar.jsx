@@ -16,7 +16,8 @@ export function NavigationBar(){
     localStorage.setItem("loginPhone", "");
     localStorage.setItem("loginGender", "");
     localStorage.setItem("loginCity", "");
-    localStorage.setItem("userType",'')
+    localStorage.setItem("userType",'');
+    localStorage.setItem("token",'');
     localStorage.setItem("isLoggedIn",'false');
     updateState({})
     navigate('/')

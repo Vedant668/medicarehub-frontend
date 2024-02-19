@@ -66,7 +66,7 @@ export function DoctorDashboard() {
 
     async function populateAppointmentsState() {
         try {
-            const data = await getAppointmentsByDoctorId(userState.loginId);
+            const data = await getAppointmentsByDoctorId(userState.loginId,userState.token);
             console.log(data);
            
             setAppointments(data);

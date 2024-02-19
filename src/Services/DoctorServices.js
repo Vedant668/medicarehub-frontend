@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 //-----------------------------------------------------------------------to login as doctor---------------------------
 let url='http://localhost:9090';
 
@@ -18,10 +17,14 @@ export async function getAllDoctors(){
 
 
 //-----------------------------------------------------------------------to appointments by doctorId---------------------------
-export async function getAppointmentsByDoctorId(doctorId){
+export async function getAppointmentsByDoctorId(doctorId,token){
+    let headers = {
+        'Authorization': `Bearer ${JSON.parse(token)}`,
+        'Content-Type': 'application/json'
+      }
 
     
-    const response = await axios.get(`${url}/getAppointmentsByDoctorId/${doctorId}`);
+    const response = await axios.get(`${url}/getAppointmentsByDoctorId/${doctorId}`,headers);
     
     return response.data;
 }
